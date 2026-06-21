@@ -365,6 +365,10 @@ export default function App() {
                     <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-purplev)]">E-mail</div>
                     <div className="mt-2 text-[var(--color-graphite)]/76 break-words">{instituto.email}</div>
                   </a>
+                  <a href={instituto.instagramUrl} {...externalLinkProps} className="rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)] hover:border-[var(--color-pinkv)]/30 transition-colors">
+                    <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-pinkv)]">Instagram</div>
+                    <div className="mt-2 text-[var(--color-graphite)]/76">{instituto.instagram}</div>
+                  </a>
                   <div className="rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)]">
                     <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-tealv)]">Endereço</div>
                     <div className="mt-2 text-[var(--color-graphite)]/76">{instituto.endereco}</div>
@@ -430,6 +434,7 @@ export default function App() {
                 <li>Endereço: {instituto.endereco}</li>
                 <li><a href={`mailto:${instituto.email}`} className="hover:text-white transition-colors break-words">{instituto.email}</a></li>
                 <li><a href={instituto.whatsappLink} {...externalLinkProps} className="hover:text-white transition-colors">WhatsApp: {instituto.telefoneVisual}</a></li>
+                <li><a href={instituto.instagramUrl} {...externalLinkProps} className="hover:text-white transition-colors">Instagram: {instituto.instagram}</a></li>
                 <li>Representante legal: {instituto.representanteLegal} — {instituto.cargo}</li>
               </ul>
             </div>

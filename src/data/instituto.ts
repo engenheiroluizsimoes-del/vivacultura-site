@@ -2,12 +2,12 @@ const whatsappMessage = 'Olá, Instituto Viva Cultura. Gostaria de mais informa�
 
 export const instituto = {
   nome: 'Instituto Viva Cultura',
-  telefone: '6696563806',
-  telefoneVisual: '(66) 9656-3806',
-  whatsappNumero: '556696563806',
-  whatsappLinkBase: 'https://wa.me/556696563806',
+  telefone: '66996563806',
+  telefoneVisual: '(66) 99656-3806',
+  whatsappNumero: '5566996563806',
+  whatsappLinkBase: 'https://wa.me/5566996563806',
   whatsappMensagem: whatsappMessage,
-  whatsappLink: `https://wa.me/556696563806?text=${encodeURIComponent(whatsappMessage)}`,
+  whatsappLink: `https://wa.me/5566996563806?text=${encodeURIComponent(whatsappMessage)}`,
   email: 'administracao@vivacultura.org.br',
   representanteLegal: 'Luiz Gustavo da Silva Simões',
   cargo: 'Presidente',
@@ -19,5 +19,6 @@ export const instituto = {
     'O Instituto Viva Cultura atua na promoção da cultura, da arte, da formação e da inclusão social, desenvolvendo projetos socioculturais, oficinas, eventos, ações de difusão artística, capacitação, preservação cultural e fortalecimento comunitário.',
   rodapeTexto:
     'Promoção da cultura, arte, formação, inclusão social e desenvolvimento comunitário por meio de projetos socioculturais, oficinas, eventos e ações de difusão artística.',
-  instagram: null,
+  instagram: '@ivivacultura',
+  instagramUrl: 'https://www.instagram.com/ivivacultura/',
 } as const;
