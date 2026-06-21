@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F6F2EA;
+  --color-graphite: #232323;
+  --color-redv: #D5491E;
+  --color-yellowv: #F2C319;
+  --color-pinkv: #E31C8C;
+  --color-purplev: #5A3D81;
+  --color-tealv: #2FC4B2;
+
+  --font-display: "Inter", "system-ui", "sans-serif";
+  --font-body: "Inter", "system-ui", "sans-serif";
+
+  --shadow-soft: 0 20px 60px rgba(0,0,0,0.10);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--color-cream);
+  color: var(--color-graphite);
+  font-family: var(--font-body);
+}
+
+.brand-ring {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(213,73,30,0.12), transparent 25%),
+    radial-gradient(circle at 80% 15%, rgba(242,195,25,0.12), transparent 22%),
+    radial-gradient(circle at 85% 50%, rgba(227,28,140,0.11), transparent 22%),
+    radial-gradient(circle at 55% 80%, rgba(90,61,129,0.12), transparent 22%),
+    radial-gradient(circle at 20% 75%, rgba(47,196,178,0.12), transparent 22%);
+}
+
+.section-line {
+  background: linear-gradient(90deg, #D5491E 0%, #F2C319 25%, #2FC4B2 50%, #5A3D81 75%, #E31C8C 100%);
+  height: 3px;
+  border-radius: 999px;
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.74);
+  backdrop-filter: blur(12px);
+}
