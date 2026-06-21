@@ -1,11 +1,23 @@
+# Instituto Viva Cultura
 
-  # viva cultura
+Site institucional do Instituto Viva Cultura.
 
-  This is a code bundle for viva cultura. The original project is available at https://www.figma.com/design/yzBI3e2bFz1e60rtWfrH5F/viva-cultura.
+## Desenvolvimento
 
-  ## Running the code
+Instale as dependências:
 
-  Run `npm i` to install the dependencies.
+```bash
+npm install
+```
 
-  Run `npm run dev` to start the development server.
-  
+Execute o ambiente local:
+
+```bash
+npm run dev
+```
+
+Gere a versão de produção:
+
+```bash
+npm run build
+```
