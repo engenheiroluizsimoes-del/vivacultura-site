@@ -17,11 +17,26 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - Header com estado de rolagem implementado.
 - Respeito a `prefers-reduced-motion` presente nas animacoes.
 - Documentacao permanente criada em `AGENTS.md`, `PROJECT_SPEC.md`, `TASK_LOG.md` e `SITE_MAP.md`.
+- Protecoes adicionais adicionadas ao `.gitignore` para arquivos sensiveis, logs e arquivos locais.
+- Auditoria npm executada em 2026-06-27 sem aplicar correcoes automaticas.
+- Build local validado com `npm run build` em 2026-06-27.
+
+## Auditoria npm - 2026-06-27
+
+- `npm audit` encontrou 2 vulnerabilidades de severidade alta.
+- `npm audit --omit=dev` encontrou 1 vulnerabilidade de severidade alta.
+- Vulnerabilidade de producao: `react-router@7.13.0`, reportada pelo npm em faixa vulneravel `7.0.0 - 7.15.0`.
+- Observacao: `react-router` esta declarado em `package.json`, mas nao foram encontradas importacoes em `src` nesta auditoria.
+- Vulnerabilidade de desenvolvimento/build: `vite@6.3.5`, reportada pelo npm em faixa vulneravel `<=6.4.2`.
+- O npm recomenda `npm audit fix --force`, mas a correcao automatica nao foi aplicada porque alteraria dependencias fora do escopo desta tarefa.
+- O build de producao passou com sucesso apos a auditoria.
 
 ## Pendencias atuais
 
 - Validar build local apos instalacao de dependencias quando o ambiente ainda nao tiver `node_modules/`.
 - Confirmar que `node_modules/` e `dist/` continuam fora do versionamento.
+- Avaliar atualizacao controlada de `react-router` para versao corrigida, ou remover a dependencia caso continue sem uso no codigo.
+- Avaliar atualizacao controlada de `vite` para versao corrigida compativel com o projeto.
 - Validar futuramente as imagens externas da Unsplash usadas na secao de projetos.
 - Avaliar futuramente a renomeacao do pacote em `package.json`, atualmente `@figma/my-make-file`, somente com tarefa explicita.
 - Revisar SEO tecnico basico em tarefa propria.
