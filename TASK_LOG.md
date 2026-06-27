@@ -20,6 +20,10 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - Protecoes adicionais adicionadas ao `.gitignore` para arquivos sensiveis, logs e arquivos locais.
 - Auditoria npm executada em 2026-06-27 sem aplicar correcoes automaticas.
 - Build local validado com `npm run build` em 2026-06-27.
+- Correcao controlada de dependencias executada em 2026-06-27 sem `npm audit fix --force`.
+- `react-router` removido apos confirmacao de ausencia de uso direto em `src`.
+- `vite` atualizado de `6.3.5` para `6.4.3` na mesma linha major.
+- Auditorias finais `npm audit` e `npm audit --omit=dev` passaram sem vulnerabilidades.
 
 ## Auditoria npm - 2026-06-27
 
@@ -31,12 +35,21 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - O npm recomenda `npm audit fix --force`, mas a correcao automatica nao foi aplicada porque alteraria dependencias fora do escopo desta tarefa.
 - O build de producao passou com sucesso apos a auditoria.
 
+## Correcao controlada de dependencias - 2026-06-27
+
+- Busca por `react-router`, `react-router-dom`, `BrowserRouter`, `Routes`, `Route`, `Link`, `NavLink`, `useNavigate` e `useParams` nao encontrou uso direto de roteamento em `src`.
+- A dependencia `react-router@7.13.0` foi removida de `package.json` e `package-lock.json`.
+- `npm install` foi executado para manter `package.json` e `package-lock.json` consistentes.
+- Apos a remocao, `npm audit --omit=dev` passou a reportar 0 vulnerabilidades.
+- `vite` foi avaliado e atualizado de `6.3.5` para `6.4.3`, sem mudanca major e sem `--force`.
+- O override `pnpm.overrides.vite` tambem foi alinhado para `6.4.3`.
+- `npm run build` passou com Vite `6.4.3`.
+- Resultado final: `npm audit` e `npm audit --omit=dev` reportaram 0 vulnerabilidades.
+
 ## Pendencias atuais
 
 - Validar build local apos instalacao de dependencias quando o ambiente ainda nao tiver `node_modules/`.
 - Confirmar que `node_modules/` e `dist/` continuam fora do versionamento.
-- Avaliar atualizacao controlada de `react-router` para versao corrigida, ou remover a dependencia caso continue sem uso no codigo.
-- Avaliar atualizacao controlada de `vite` para versao corrigida compativel com o projeto.
 - Validar futuramente as imagens externas da Unsplash usadas na secao de projetos.
 - Avaliar futuramente a renomeacao do pacote em `package.json`, atualmente `@figma/my-make-file`, somente com tarefa explicita.
 - Revisar SEO tecnico basico em tarefa propria.
