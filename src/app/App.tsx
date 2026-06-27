@@ -50,10 +50,48 @@ const projetosInstitucionais = [
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [headerScrolled, setHeaderScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setHeaderScrolled(window.scrollY > 12);
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  React.useEffect(() => {
+    document.documentElement.classList.add('motion-ready');
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealElements.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.14 },
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="antialiased font-body">
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--color-cream)]/90 border-b border-black/5">
+      <header className={`site-header sticky top-0 z-50 backdrop-blur-md bg-[var(--color-cream)]/90 border-b border-black/5 ${headerScrolled ? 'site-header--scrolled' : ''}`}>
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <div className="flex items-center justify-between py-4 gap-6">
             <a href="#inicio" className="flex items-center gap-3 min-w-0">
@@ -62,11 +100,11 @@ export default function App() {
             </a>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-bold text-[var(--color-graphite)]/80">
-              <a href="#sobre" className="hover:text-[var(--color-redv)] transition-colors">Quem somos</a>
-              <a href="#essencia" className="hover:text-[var(--color-redv)] transition-colors">Essência</a>
-              <a href="#atuacao" className="hover:text-[var(--color-tealv)] transition-colors">Atuação</a>
-              <a href="#projetos" className="hover:text-[var(--color-yellowv)] transition-colors">Projetos</a>
-              <a href={instituto.whatsappLink} {...externalLinkProps} className="px-5 py-2.5 rounded-full bg-[var(--color-graphite)] text-white hover:bg-black transition-colors">
+              <a href="#sobre" className="nav-link hover:text-[var(--color-redv)] transition-colors">Quem somos</a>
+              <a href="#essencia" className="nav-link hover:text-[var(--color-redv)] transition-colors">Essência</a>
+              <a href="#atuacao" className="nav-link hover:text-[var(--color-tealv)] transition-colors">Atuação</a>
+              <a href="#projetos" className="nav-link hover:text-[var(--color-yellowv)] transition-colors">Projetos</a>
+              <a href={instituto.whatsappLink} {...externalLinkProps} className="action-button px-5 py-2.5 rounded-full bg-[var(--color-graphite)] text-white hover:bg-black transition-colors">
                 Fale conosco
               </a>
             </nav>
@@ -74,7 +112,7 @@ export default function App() {
             <button
               type="button"
               aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-              className="md:hidden p-2 text-[var(--color-graphite)]"
+              className="icon-button md:hidden p-2 text-[var(--color-graphite)]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -83,22 +121,22 @@ export default function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-[var(--color-cream)] border-b border-black/5 py-4 px-5 flex flex-col gap-4 shadow-soft">
-            <a href="#sobre" className="font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Quem somos</a>
-            <a href="#essencia" className="font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Essência</a>
-            <a href="#atuacao" className="font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Atuação</a>
-            <a href="#projetos" className="font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Projetos</a>
-            <a href={instituto.whatsappLink} {...externalLinkProps} className="font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Fale conosco</a>
+          <div className="mobile-menu md:hidden absolute top-full left-0 w-full bg-[var(--color-cream)] border-b border-black/5 py-4 px-5 flex flex-col gap-4 shadow-soft">
+            <a href="#sobre" className="nav-link font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Quem somos</a>
+            <a href="#essencia" className="nav-link font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Essência</a>
+            <a href="#atuacao" className="nav-link font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Atuação</a>
+            <a href="#projetos" className="nav-link font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Projetos</a>
+            <a href={instituto.whatsappLink} {...externalLinkProps} className="nav-link font-bold text-[var(--color-graphite)] py-2" onClick={() => setMobileMenuOpen(false)}>Fale conosco</a>
           </div>
         )}
       </header>
 
       <main id="inicio">
-        <section className="relative overflow-hidden pt-10 lg:pt-0">
+        <section className="hero-section relative overflow-hidden pt-10 lg:pt-0">
           <div className="brand-ring absolute inset-0"></div>
           <div className="max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28 relative">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="order-2 lg:order-1">
+              <div className="hero-copy order-2 lg:order-1" data-reveal>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/60 text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-graphite)]/75">
                   Cultura · Arte · Inclusão
                 </div>
@@ -115,32 +153,32 @@ export default function App() {
                 </p>
 
                 <div className="mt-9 flex flex-col sm:flex-row gap-4">
-                  <a href="#projetos" className="px-7 py-4 rounded-2xl bg-[var(--color-graphite)] text-white font-bold shadow-soft hover:-translate-y-0.5 transition text-center">
+                  <a href="#projetos" className="action-button px-7 py-4 rounded-2xl bg-[var(--color-graphite)] text-white font-bold shadow-soft hover:-translate-y-0.5 transition text-center">
                     Conheça nossos projetos
                   </a>
-                  <a href={instituto.whatsappLink} {...externalLinkProps} className="px-7 py-4 rounded-2xl border border-[var(--color-graphite)]/12 bg-white/70 text-[var(--color-graphite)] font-bold hover:bg-white transition text-center">
+                  <a href={instituto.whatsappLink} {...externalLinkProps} className="action-button action-button--light px-7 py-4 rounded-2xl border border-[var(--color-graphite)]/12 bg-white/70 text-[var(--color-graphite)] font-bold hover:bg-white transition text-center">
                     Fale com o Instituto
                   </a>
                 </div>
 
-                <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl">
-                  <div className="glass-card rounded-2xl p-4 border border-black/5 shadow-soft">
+                <div className="reveal-grid mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl">
+                  <div className="metric-card glass-card rounded-2xl p-4 border border-black/5 shadow-soft">
                     <div className="text-2xl font-black text-[var(--color-redv)]">Cultura</div>
                     <div className="mt-1 text-sm text-[var(--color-graphite)]/70">Acesso e participação cultural</div>
                   </div>
-                  <div className="glass-card rounded-2xl p-4 border border-black/5 shadow-soft">
+                  <div className="metric-card glass-card rounded-2xl p-4 border border-black/5 shadow-soft">
                     <div className="text-2xl font-black text-[var(--color-tealv)]">Formação</div>
                     <div className="mt-1 text-sm text-[var(--color-graphite)]/70">Capacitação e desenvolvimento</div>
                   </div>
-                  <div className="glass-card rounded-2xl p-4 border border-black/5 shadow-soft">
+                  <div className="metric-card glass-card rounded-2xl p-4 border border-black/5 shadow-soft">
                     <div className="text-2xl font-black text-[var(--color-purplev)]">Impacto</div>
                     <div className="mt-1 text-sm text-[var(--color-graphite)]/70">Transformação social com arte</div>
                   </div>
                 </div>
               </div>
 
-              <div className="relative order-1 lg:order-2">
-                <div className="rounded-[2rem] bg-white shadow-soft border border-black/5 p-8 lg:p-10 flex items-center justify-center">
+              <div className="relative order-1 lg:order-2" data-reveal>
+                <div className="logo-panel rounded-[2rem] bg-white shadow-soft border border-black/5 p-8 lg:p-10 flex items-center justify-center">
                   <img src={squareLogo} alt="Marca do Instituto Viva Cultura" className="w-48 h-48 md:w-full md:max-w-md object-contain drop-shadow-2xl" />
                 </div>
               </div>
@@ -152,7 +190,7 @@ export default function App() {
           <div className="section-line w-full"></div>
         </div>
 
-        <section id="sobre" className="py-20 lg:py-24">
+        <section id="sobre" className="section-reveal py-20 lg:py-24" data-reveal>
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
             <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start">
               <div>
@@ -164,7 +202,7 @@ export default function App() {
                   {instituto.textoQuemSomos}
                 </p>
               </div>
-              <div className="rounded-[2rem] bg-[var(--color-graphite)] text-white p-8 shadow-soft">
+              <div className="motion-card rounded-[2rem] bg-[var(--color-graphite)] text-white p-8 shadow-soft">
                 <div className="text-sm uppercase tracking-[0.2em] font-bold text-white/60">Posicionamento</div>
                 <p className="mt-4 text-2xl font-bold leading-tight">
                   Arte e cultura como força de formação, pertencimento, cidadania e transformação.
@@ -192,13 +230,13 @@ export default function App() {
           </div>
         </section>
 
-        <section id="essencia" className="py-20 lg:py-24 bg-white">
+        <section id="essencia" className="section-reveal py-20 lg:py-24 bg-white" data-reveal>
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
             <div className="text-sm uppercase tracking-[0.25em] font-bold text-[var(--color-graphite)]/55">Essência da marca</div>
             <h2 className="mt-4 text-4xl md:text-5xl font-black tracking-tight text-[var(--color-graphite)]">Missão, visão e valores em linguagem clara e forte.</h2>
 
-            <div className="grid lg:grid-cols-3 gap-6 mt-10">
-              <article className="rounded-[2rem] p-8 bg-[var(--color-cream)] border border-black/5 shadow-soft">
+            <div className="reveal-grid grid lg:grid-cols-3 gap-6 mt-10">
+              <article className="motion-card rounded-[2rem] p-8 bg-[var(--color-cream)] border border-black/5 shadow-soft">
                 <div className="w-12 h-1 rounded-full bg-[var(--color-redv)]"></div>
                 <h3 className="mt-5 text-2xl font-black text-[var(--color-graphite)]">Missão</h3>
                 <p className="mt-4 text-[var(--color-graphite)]/75 leading-relaxed">
@@ -207,7 +245,7 @@ export default function App() {
                   humano e ampliem as oportunidades de participação cultural para todas as comunidades.
                 </p>
               </article>
-              <article className="rounded-[2rem] p-8 bg-[var(--color-cream)] border border-black/5 shadow-soft">
+              <article className="motion-card rounded-[2rem] p-8 bg-[var(--color-cream)] border border-black/5 shadow-soft">
                 <div className="w-12 h-1 rounded-full bg-[var(--color-yellowv)]"></div>
                 <h3 className="mt-5 text-2xl font-black text-[var(--color-graphite)]">Visão</h3>
                 <p className="mt-4 text-[var(--color-graphite)]/75 leading-relaxed">
@@ -216,7 +254,7 @@ export default function App() {
                   identidades e contribuir para uma sociedade mais justa, criativa e participativa.
                 </p>
               </article>
-              <article className="rounded-[2rem] p-8 bg-[var(--color-graphite)] text-white shadow-soft">
+              <article className="motion-card rounded-[2rem] p-8 bg-[var(--color-graphite)] text-white shadow-soft">
                 <div className="w-12 h-1 rounded-full bg-[var(--color-tealv)]"></div>
                 <h3 className="mt-5 text-2xl font-black">Valores</h3>
                 <ul className="mt-4 space-y-3 text-white/80 leading-relaxed">
@@ -232,7 +270,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="atuacao" className="py-20 lg:py-24 bg-[var(--color-cream)]">
+        <section id="atuacao" className="section-reveal py-20 lg:py-24 bg-[var(--color-cream)]" data-reveal>
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <div>
@@ -244,9 +282,9 @@ export default function App() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+            <div className="reveal-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
               {areasAtuacao.map((item, i) => (
-                <article key={i} className="rounded-[1.8rem] p-6 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
+                <article key={i} className="motion-card rounded-[1.8rem] p-6 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
                   <div className="w-10 h-10 rounded-2xl flex items-center justify-center font-black" style={{ color: item.color, backgroundColor: `color-mix(in srgb, ${item.bg} 10%, transparent)` }}>
                     {item.letter}
                   </div>
@@ -258,7 +296,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="py-20 lg:py-24 bg-white">
+        <section className="section-reveal py-20 lg:py-24 bg-white" data-reveal>
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
             <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-10 items-start">
               <div>
@@ -268,20 +306,20 @@ export default function App() {
                   O trabalho do Instituto busca ampliar o acesso à cultura, fortalecer identidades, impulsionar trajetórias criativas e gerar valor social real nos territórios em que atua.
                 </p>
               </div>
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="rounded-[1.8rem] p-7 bg-[var(--color-redv)] text-white shadow-soft">
+              <div className="reveal-grid grid sm:grid-cols-2 gap-5">
+                <div className="motion-card rounded-[1.8rem] p-7 bg-[var(--color-redv)] text-white shadow-soft">
                   <div className="text-sm uppercase tracking-[0.2em] font-bold text-white/70">Acesso cultural</div>
                   <p className="mt-3 text-2xl font-black leading-tight">Cultura como direito e presença viva na comunidade.</p>
                 </div>
-                <div className="rounded-[1.8rem] p-7 bg-[var(--color-tealv)] text-[var(--color-graphite)] shadow-soft">
+                <div className="motion-card rounded-[1.8rem] p-7 bg-[var(--color-tealv)] text-[var(--color-graphite)] shadow-soft">
                   <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-graphite)]/60">Formação</div>
                   <p className="mt-3 text-2xl font-black leading-tight">Aprendizagem artística conectada a propósito e desenvolvimento humano.</p>
                 </div>
-                <div className="rounded-[1.8rem] p-7 bg-[var(--color-purplev)] text-white shadow-soft">
+                <div className="motion-card rounded-[1.8rem] p-7 bg-[var(--color-purplev)] text-white shadow-soft">
                   <div className="text-sm uppercase tracking-[0.2em] font-bold text-white/70">Identidade</div>
                   <p className="mt-3 text-2xl font-black leading-tight">Fortalecimento de vínculos, repertórios e pertencimento cultural.</p>
                 </div>
-                <div className="rounded-[1.8rem] p-7 bg-[var(--color-yellowv)] text-[var(--color-graphite)] shadow-soft">
+                <div className="motion-card rounded-[1.8rem] p-7 bg-[var(--color-yellowv)] text-[var(--color-graphite)] shadow-soft">
                   <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-graphite)]/60">Transformação</div>
                   <p className="mt-3 text-2xl font-black leading-tight">Projetos que geram impacto social, visibilidade e participação.</p>
                 </div>
@@ -290,25 +328,25 @@ export default function App() {
           </div>
         </section>
 
-        <section className="py-20 lg:py-24 bg-[var(--color-cream)]">
+        <section className="section-reveal py-20 lg:py-24 bg-[var(--color-cream)]" data-reveal>
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
             <div className="text-sm uppercase tracking-[0.25em] font-bold text-[var(--color-graphite)]/55">Credibilidade institucional</div>
             <h2 className="mt-4 text-4xl md:text-5xl font-black tracking-tight text-[var(--color-graphite)]">Estrutura, propósito e compromisso público.</h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
-              <article className="rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
+            <div className="reveal-grid grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+              <article className="motion-card rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
                 <h3 className="text-xl font-black text-[var(--color-graphite)]">Atuação formal</h3>
                 <p className="mt-3 text-[var(--color-graphite)]/72 leading-relaxed">Presença institucional organizada para desenvolver ações culturais e socioculturais com consistência.</p>
               </article>
-              <article className="rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
+              <article className="motion-card rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
                 <h3 className="text-xl font-black text-[var(--color-graphite)]">Ética e transparência</h3>
                 <p className="mt-3 text-[var(--color-graphite)]/72 leading-relaxed">Compromisso com integridade, responsabilidade administrativa e confiança pública.</p>
               </article>
-              <article className="rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
+              <article className="motion-card rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
                 <h3 className="text-xl font-black text-[var(--color-graphite)]">Capacidade de execução</h3>
                 <p className="mt-3 text-[var(--color-graphite)]/72 leading-relaxed">Projetos, eventos e formações planejados com intenção artística e organização operacional.</p>
               </article>
-              <article className="rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
+              <article className="motion-card rounded-[1.8rem] p-7 bg-white border border-black/5 shadow-soft hover:-translate-y-1 transition-transform">
                 <h3 className="text-xl font-black text-[var(--color-graphite)]">Valor comunitário</h3>
                 <p className="mt-3 text-[var(--color-graphite)]/72 leading-relaxed">A cultura como ferramenta de participação, cidadania, pertencimento e transformação local.</p>
               </article>
@@ -316,7 +354,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="projetos" className="py-20 lg:py-24 bg-[var(--color-graphite)] text-white">
+        <section id="projetos" className="section-reveal py-20 lg:py-24 bg-[var(--color-graphite)] text-white" data-reveal>
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <div>
@@ -328,9 +366,9 @@ export default function App() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-5 mt-10">
+            <div className="reveal-grid grid md:grid-cols-3 gap-5 mt-10">
               {projetosInstitucionais.map((item) => (
-                <article key={item.title} className="rounded-[1.8rem] overflow-hidden bg-white/5 border border-white/10 hover:bg-white/10 transition-all group flex flex-col">
+                <article key={item.title} className="project-card motion-card rounded-[1.8rem] overflow-hidden bg-white/5 border border-white/10 hover:bg-white/10 transition-all group flex flex-col">
                   <div className="h-48 w-full overflow-hidden">
                     <img src={item.image} alt={item.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
@@ -345,9 +383,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contato" className="py-20 lg:py-24 bg-[var(--color-cream)]">
+        <section id="contato" className="section-reveal py-20 lg:py-24 bg-[var(--color-cream)]" data-reveal>
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
-            <div className="rounded-[2rem] bg-white shadow-soft border border-black/5 p-8 lg:p-12">
+            <div className="motion-card rounded-[2rem] bg-white shadow-soft border border-black/5 p-8 lg:p-12">
               <div className="grid lg:grid-cols-[1fr_0.95fr] gap-10 items-start">
                 <div>
                   <div className="text-sm uppercase tracking-[0.25em] font-bold text-[var(--color-graphite)]/55">Contato</div>
@@ -356,20 +394,20 @@ export default function App() {
                     Entre em contato pelos canais institucionais do Instituto Viva Cultura para informações, parcerias, propostas e relacionamento com a comunidade.
                   </p>
                 </div>
-                <div className="grid gap-4">
-                  <a href={instituto.whatsappLink} {...externalLinkProps} className="rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)] hover:border-[var(--color-redv)]/30 transition-colors">
+                <div className="reveal-grid grid gap-4">
+                  <a href={instituto.whatsappLink} {...externalLinkProps} className="contact-card motion-card rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)] hover:border-[var(--color-redv)]/30 transition-colors">
                     <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-redv)]">WhatsApp</div>
                     <div className="mt-2 text-[var(--color-graphite)]/76">{instituto.telefoneVisual}</div>
                   </a>
-                  <a href={`mailto:${instituto.email}`} className="rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)] hover:border-[var(--color-purplev)]/30 transition-colors">
+                  <a href={`mailto:${instituto.email}`} className="contact-card motion-card rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)] hover:border-[var(--color-purplev)]/30 transition-colors">
                     <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-purplev)]">E-mail</div>
                     <div className="mt-2 text-[var(--color-graphite)]/76 break-words">{instituto.email}</div>
                   </a>
-                  <a href={instituto.instagramUrl} {...externalLinkProps} className="rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)] hover:border-[var(--color-pinkv)]/30 transition-colors">
+                  <a href={instituto.instagramUrl} {...externalLinkProps} className="contact-card motion-card rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)] hover:border-[var(--color-pinkv)]/30 transition-colors">
                     <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-pinkv)]">Instagram</div>
                     <div className="mt-2 text-[var(--color-graphite)]/76">{instituto.instagram}</div>
                   </a>
-                  <div className="rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)]">
+                  <div className="contact-card motion-card rounded-2xl border border-black/5 p-5 bg-[var(--color-cream)]">
                     <div className="text-sm uppercase tracking-[0.2em] font-bold text-[var(--color-tealv)]">Endereço</div>
                     <div className="mt-2 text-[var(--color-graphite)]/76">{instituto.endereco}</div>
                   </div>
@@ -379,7 +417,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="privacidade" className="py-20 lg:py-24 bg-white">
+        <section id="privacidade" className="section-reveal py-20 lg:py-24 bg-white" data-reveal>
           <div className="max-w-4xl mx-auto px-5 lg:px-8">
             <div className="text-sm uppercase tracking-[0.25em] font-bold text-[var(--color-graphite)]/55">Política de Privacidade</div>
             <h2 className="mt-4 text-4xl md:text-5xl font-black tracking-tight text-[var(--color-graphite)]">Privacidade e canais de atendimento.</h2>
@@ -395,7 +433,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="bg-[var(--color-graphite)] text-white">
+      <footer className="section-reveal bg-[var(--color-graphite)] text-white" data-reveal>
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.15fr_0.85fr_0.85fr_0.85fr] gap-10 lg:gap-8">
             <div className="sm:col-span-2 lg:col-span-1">

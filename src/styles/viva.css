@@ -18,6 +18,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background: var(--color-cream);
   color: var(--color-graphite);
@@ -31,6 +36,9 @@ body {
     radial-gradient(circle at 85% 50%, rgba(227,28,140,0.11), transparent 22%),
     radial-gradient(circle at 55% 80%, rgba(90,61,129,0.12), transparent 22%),
     radial-gradient(circle at 20% 75%, rgba(47,196,178,0.12), transparent 22%);
+  background-size: 120% 120%;
+  animation: brandField 16s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 .section-line {
@@ -42,4 +50,314 @@ body {
 .glass-card {
   background: rgba(255,255,255,0.74);
   backdrop-filter: blur(12px);
+}
+
+.site-header {
+  transition:
+    background-color 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms ease;
+}
+
+.site-header--scrolled {
+  background-color: rgba(246, 242, 234, 0.94);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 40px rgba(35, 35, 35, 0.08);
+}
+
+.nav-link {
+  position: relative;
+  transition:
+    color 220ms ease,
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.28rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-redv), var(--color-pinkv), var(--color-tealv));
+  border-radius: 999px;
+  opacity: 0;
+  transform: scaleX(0.35);
+  transform-origin: center;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.mobile-menu {
+  animation: mobileMenuIn 220ms ease both;
+}
+
+.action-button,
+.icon-button,
+.contact-card,
+.motion-card,
+.metric-card,
+.project-card {
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    border-color 240ms ease,
+    background-color 240ms ease,
+    opacity 240ms ease;
+}
+
+.action-button {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.action-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.18) 45%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 520ms ease;
+}
+
+.action-button:hover,
+.action-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 42px rgba(35, 35, 35, 0.16);
+}
+
+.action-button:hover::before,
+.action-button:focus-visible::before {
+  transform: translateX(120%);
+}
+
+.action-button:active,
+.icon-button:active,
+.motion-card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.action-button--light:hover,
+.action-button--light:focus-visible {
+  box-shadow: 0 18px 42px rgba(35, 35, 35, 0.10);
+}
+
+.icon-button {
+  border-radius: 999px;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: rgba(255, 255, 255, 0.76);
+  transform: translateY(-1px);
+}
+
+.motion-card,
+.metric-card,
+.contact-card {
+  will-change: transform;
+}
+
+.motion-card:hover,
+.motion-card:focus-within,
+.metric-card:hover,
+.contact-card:hover,
+.contact-card:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 70px rgba(35, 35, 35, 0.14);
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 26px 76px rgba(0, 0, 0, 0.22);
+}
+
+.logo-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  animation: logoFloat 7s ease-in-out infinite;
+  transition:
+    transform 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.logo-panel::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(242, 195, 25, 0.22), transparent 24%),
+    radial-gradient(circle at 70% 40%, rgba(227, 28, 140, 0.18), transparent 26%),
+    radial-gradient(circle at 52% 72%, rgba(47, 196, 178, 0.18), transparent 24%);
+  filter: blur(18px);
+  animation: logoGlow 10s ease-in-out infinite alternate;
+}
+
+.logo-panel:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 28px 80px rgba(35, 35, 35, 0.14);
+}
+
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.motion-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-ready .hero-copy[data-reveal] > *,
+.motion-ready [data-reveal] .reveal-grid > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.motion-ready .hero-copy[data-reveal].is-visible > *,
+.motion-ready [data-reveal].is-visible .reveal-grid > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-ready .hero-copy[data-reveal].is-visible > :nth-child(1),
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(1) {
+  transition-delay: 80ms;
+}
+
+.motion-ready .hero-copy[data-reveal].is-visible > :nth-child(2),
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(2) {
+  transition-delay: 150ms;
+}
+
+.motion-ready .hero-copy[data-reveal].is-visible > :nth-child(3),
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(3) {
+  transition-delay: 220ms;
+}
+
+.motion-ready .hero-copy[data-reveal].is-visible > :nth-child(4),
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(4) {
+  transition-delay: 290ms;
+}
+
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(5) {
+  transition-delay: 360ms;
+}
+
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(6) {
+  transition-delay: 430ms;
+}
+
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(7) {
+  transition-delay: 500ms;
+}
+
+.motion-ready [data-reveal].is-visible .reveal-grid > :nth-child(8) {
+  transition-delay: 570ms;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-tealv) 72%, white);
+  outline-offset: 4px;
+}
+
+@keyframes brandField {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 18% 12%;
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes logoGlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(8deg) scale(1.04);
+  }
+}
+
+@keyframes mobileMenuIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .motion-card:hover,
+  .motion-card:focus-within,
+  .metric-card:hover,
+  .contact-card:hover,
+  .project-card:hover,
+  .project-card:focus-within {
+    transform: translateY(-2px);
+  }
+
+  .logo-panel {
+    animation-duration: 9s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .motion-ready [data-reveal],
+  .motion-ready .hero-copy[data-reveal] > *,
+  .motion-ready [data-reveal] .reveal-grid > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
