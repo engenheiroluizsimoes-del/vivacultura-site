@@ -24,6 +24,7 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - `react-router` removido apos confirmacao de ausencia de uso direto em `src`.
 - `vite` atualizado de `6.3.5` para `6.4.3` na mesma linha major.
 - Auditorias finais `npm audit` e `npm audit --omit=dev` passaram sem vulnerabilidades.
+- Manual atualizado de imagem e marca incorporado em 2026-06-28 como referencia oficial de identidade verbal, visual, tom de voz, posicionamento, publicos prioritarios e diretrizes institucionais do projeto.
 
 ## Auditoria npm - 2026-06-27
 
@@ -48,6 +49,7 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 
 ## Pendencias atuais
 
+- Auditar o site publicado contra o manual atualizado de imagem e marca, verificando tagline, posicionamento, tom de voz, identidade visual, cores, tipografia, hierarquia de conteudo, acessibilidade e coerencia institucional.
 - Validar build local apos instalacao de dependencias quando o ambiente ainda nao tiver `node_modules/`.
 - Confirmar que `node_modules/` e `dist/` continuam fora do versionamento.
 - Validar futuramente as imagens externas da Unsplash usadas na secao de projetos.
@@ -57,17 +59,20 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 
 ## Proximas tarefas recomendadas
 
-1. Rodar `npm install` em ambiente local limpo.
-2. Rodar `npm run build` e confirmar geracao de `dist`.
-3. Fazer uma revisao de acessibilidade e SEO basico.
-4. Planejar uma estrutura futura para projetos reais do Instituto.
-5. Planejar uma galeria institucional com imagens proprias do Instituto.
-6. Avaliar dependencia de imagens externas e substituir por assets proprios quando disponiveis.
-7. Avaliar renomeacao do pacote em `package.json` em tarefa especifica.
+1. Fazer auditoria do site publicado contra o manual atualizado de imagem e marca.
+2. Rodar `npm install` em ambiente local limpo.
+3. Rodar `npm run build` e confirmar geracao de `dist`.
+4. Fazer uma revisao de acessibilidade e SEO basico.
+5. Planejar uma estrutura futura para projetos reais do Instituto.
+6. Planejar uma galeria institucional com imagens proprias do Instituto.
+7. Avaliar dependencia de imagens externas e substituir por assets proprios quando disponiveis.
+8. Avaliar renomeacao do pacote em `package.json` em tarefa especifica.
 
 ## Observacoes de manutencao
 
 Toda alteracao de conteudo institucional deve preservar os dados oficiais definidos em `PROJECT_SPEC.md`.
+
+Toda alteracao visual ou textual deve preservar o manual atualizado de imagem e marca registrado em `PROJECT_SPEC.md`.
 
 Mudancas em dominio, DNS, Cloudflare Pages ou dados institucionais exigem tarefa explicita.
 
