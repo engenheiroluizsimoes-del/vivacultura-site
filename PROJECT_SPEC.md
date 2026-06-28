@@ -65,6 +65,111 @@ O site possui estrutura institucional de pagina unica com:
 - politica de privacidade;
 - rodape institucional.
 
+## Diretrizes oficiais de marca
+
+O manual atualizado de imagem e marca do Instituto Viva Cultura e referencia oficial para identidade verbal, visual, tom de voz, posicionamento, publicos e diretrizes institucionais do site.
+
+### Essencia
+
+Proposito: promover cultura, arte, formacao e transformacao social de forma acessivel, estruturada e relevante para a comunidade.
+
+Missao: desenvolver e difundir a cultura em suas diversas manifestacoes, com fomento as artes, inclusao social e fortalecimento de iniciativas culturais.
+
+Visao: ser referencia em atuacao cultural com capacidade de transformar comunidades por meio da arte, da educacao e da criatividade.
+
+Valores:
+
+- cultura viva;
+- inclusao;
+- diversidade;
+- etica;
+- transparencia;
+- autonomia;
+- cooperacao;
+- responsabilidade social.
+
+### Identidade e posicionamento
+
+Identidade institucional:
+
+- muito alem de eventos, somos transformacao;
+- sem barreiras;
+- apenas impacto real, social e cultural para todos;
+- somos a cultura em movimento.
+
+Territorio prioritario: cultura viva, o abraco que acolhe a diversidade e a arte que transforma o caminho de cada um.
+
+Tagline oficial: Arte que acolhe, acesso que transforma.
+
+Promessa da marca: promover o desenvolvimento humano e social atraves de formacoes artisticas estruturadas, gerando oportunidades reais com o potencial de integrar comunidades pelo poder da cultura.
+
+### Universo verbal
+
+Palavras e eixos prioritarios:
+
+- cultural;
+- formacao;
+- inclusao;
+- instituicao;
+- sentimento.
+
+Tom de voz:
+
+- plural, usando "nos" quando fizer sentido;
+- acolhedor;
+- coloquial;
+- proximo;
+- simples;
+- humano;
+- sem excesso de burocracia;
+- sem girias excessivas;
+- com respeito institucional.
+
+Personalidade da marca:
+
+- criativa;
+- madura;
+- inovadora.
+
+O site deve transmitir dinamismo sem parecer amador, e maturidade sem parecer frio ou burocratico.
+
+### Publicos prioritarios
+
+- beneficiarios e alunos;
+- cultura e sociedade;
+- parceiros e patrocinadores.
+
+### Como falar
+
+Sobre pessoas: falar com orgulho e protagonismo. O heroi e o aluno, artista ou cidadao. O Instituto e a ponte.
+
+Sobre projetos: falar com entusiasmo e foco no impacto. Nao descrever so etapas tecnicas; mostrar o que o projeto transforma.
+
+Sobre parceiros: falar com transparencia, seguranca e valor institucional. Destacar governanca, execucao profissional e impacto mensuravel.
+
+### Universo visual
+
+O site deve respeitar:
+
+- uso da marca oficial;
+- icone oficial;
+- cores principais e secundarias do manual;
+- tipografia Inter;
+- aparencia cultural, colorida, viva, institucional e profissional;
+- equilibrio entre criatividade e credibilidade.
+
+### Cuidados de implementacao futura
+
+Futuras alteracoes no site devem:
+
+- evitar aparencia generica de template;
+- evitar estetica fria ou burocratica;
+- evitar excesso de animacao;
+- evitar copiar referencias externas;
+- usar movimento como reforco da ideia "cultura em movimento";
+- manter acessibilidade, responsividade e performance;
+- preservar dados oficiais do Instituto.
+
 ## Modernizacao visual presente
 
 O codigo atual ja inclui modernizacao visual com:
