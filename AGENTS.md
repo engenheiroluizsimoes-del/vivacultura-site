@@ -27,6 +27,10 @@ Branch principal: `main`
 
 Preserve os dados institucionais oficiais do Instituto Viva Cultura. Nao altere nome, contatos, endereco, representante legal, dominio, identidade institucional ou textos publicos sem tarefa explicita para isso.
 
+Preserve o manual atualizado de imagem e marca registrado em `PROJECT_SPEC.md`. Nao faca alteracoes visuais ou textuais que contrariem identidade institucional, tagline, promessa da marca, tom de voz, cores, tipografia, posicionamento, publicos prioritarios ou diretrizes verbais e visuais sem tarefa explicita e aprovada.
+
+Qualquer futura alteracao de layout, conteudo publico, componentes, estilos, animacoes, imagens ou chamadas institucionais deve manter a marca cultural, acolhedora, plural, simples, humana, criativa, madura, inovadora e profissional, com equilibrio entre dinamismo e credibilidade.
+
 Nao mexa em dominio, DNS, Cloudflare Pages, configuracoes de hospedagem ou redirecionamentos sem uma tarefa explicita e aprovada.
 
 Nao crie login, painel administrativo, banco de dados, area restrita, integrações complexas ou funcionalidades fora do escopo institucional sem aprovacao previa de escopo.
