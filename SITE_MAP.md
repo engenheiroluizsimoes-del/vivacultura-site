@@ -12,6 +12,7 @@ Ancora: `#inicio`
 
 Funcao:
 
+- refletir a tagline oficial "Arte que acolhe, acesso que transforma" e o posicionamento de cultura em movimento;
 - apresentar o Instituto Viva Cultura;
 - destacar cultura, arte e transformacao social;
 - exibir chamadas para projetos e contato;
@@ -24,6 +25,7 @@ Ancora: `#sobre`
 
 Funcao:
 
+- refletir a identidade institucional: muito alem de eventos, somos transformacao; sem barreiras; impacto real, social e cultural para todos;
 - explicar a atuacao institucional;
 - apresentar compromisso social e cultural;
 - reforcar posicionamento de arte e cultura como forca de formacao, pertencimento, cidadania e transformacao.
@@ -34,6 +36,7 @@ Ancora: `#essencia`
 
 Funcao:
 
+- refletir proposito, missao, visao e valores definidos no manual atualizado da marca;
 - apresentar missao;
 - apresentar visao;
 - listar valores institucionais;
@@ -45,6 +48,7 @@ Ancora: `#atuacao`
 
 Funcao:
 
+- refletir impacto cultural, formacao e inclusao, com foco no que cada frente transforma para pessoas e comunidades;
 - apresentar frentes de atuacao do Instituto;
 - listar cultura, artes, difusao, formacao artistica, producao cultural, eventos, acoes socioculturais e inclusao social;
 - conectar arte, comunidade e desenvolvimento.
@@ -77,6 +81,7 @@ Ancora: `#projetos`
 
 Funcao:
 
+- refletir impacto cultural, formacao, inclusao e oportunidades reais para beneficiarios, alunos, artistas, parceiros e comunidade;
 - apresentar projetos e iniciativas;
 - organizar exemplos institucionais por formacao, difusao artistica e comunidade;
 - indicar areas de oficinas, eventos, capacitacoes, preservacao cultural e apoio ao setor cultural.
@@ -87,6 +92,7 @@ Ancora: `#contato`
 
 Funcao:
 
+- refletir proximidade, acolhimento, transparencia e credibilidade institucional;
 - disponibilizar WhatsApp;
 - disponibilizar e-mail;
 - disponibilizar Instagram;
@@ -105,6 +111,7 @@ Funcao:
 
 Funcao:
 
+- refletir institucionalidade, credibilidade, dados oficiais e respeito ao posicionamento da marca;
 - exibir assinatura visual;
 - resumir finalidade institucional;
 - repetir navegacao principal;
