@@ -15,8 +15,24 @@
   --shadow-soft: 0 20px 60px rgba(0,0,0,0.10);
 }
 
+:root {
+  --surface-white: rgba(255, 255, 255, 0.88);
+  --surface-cream: rgba(246, 242, 234, 0.88);
+  --border-soft: rgba(35, 35, 35, 0.08);
+  --border-inverse: rgba(255, 255, 255, 0.12);
+  --radius-card: 1.35rem;
+  --radius-panel: 1.8rem;
+  --shadow-card: 0 18px 44px rgba(35, 35, 35, 0.10);
+  --shadow-card-hover: 0 24px 64px rgba(35, 35, 35, 0.14);
+  --shadow-dark-card: 0 24px 70px rgba(0, 0, 0, 0.24);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-base: 260ms;
+  --duration-reveal: 760ms;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 * {
@@ -27,6 +43,7 @@ body {
   background: var(--color-cream);
   color: var(--color-graphite);
   font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
 .brand-ring {
@@ -36,8 +53,8 @@ body {
     radial-gradient(circle at 85% 50%, rgba(227,28,140,0.11), transparent 22%),
     radial-gradient(circle at 55% 80%, rgba(90,61,129,0.12), transparent 22%),
     radial-gradient(circle at 20% 75%, rgba(47,196,178,0.12), transparent 22%);
-  background-size: 120% 120%;
-  animation: brandField 16s ease-in-out infinite alternate;
+  background-size: 118% 118%;
+  animation: brandField 18s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
@@ -48,8 +65,9 @@ body {
 }
 
 .glass-card {
-  background: rgba(255,255,255,0.74);
+  background: rgba(255,255,255,0.78);
   backdrop-filter: blur(12px);
+  border-color: var(--border-soft);
 }
 
 .hero-badge {
@@ -62,24 +80,64 @@ body {
 
 .site-header {
   transition:
-    background-color 240ms ease,
-    border-color 240ms ease,
-    box-shadow 240ms ease,
-    transform 240ms ease;
+    background-color var(--duration-base) ease,
+    border-color var(--duration-base) ease,
+    box-shadow var(--duration-base) ease,
+    transform var(--duration-base) ease;
 }
 
 .site-header--scrolled {
-  background-color: rgba(246, 242, 234, 0.94);
+  background-color: rgba(246, 242, 234, 0.96);
   border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 14px 40px rgba(35, 35, 35, 0.08);
+  box-shadow: 0 14px 38px rgba(35, 35, 35, 0.08);
+}
+
+.hero-section > .max-w-7xl {
+  min-height: min(760px, calc(100svh - 4.5rem));
+  display: flex;
+  align-items: center;
+  padding-block: 5.5rem;
+}
+
+.hero-section > .max-w-7xl > .grid {
+  width: 100%;
+}
+
+.hero-copy h1,
+.section-reveal h2,
+.section-reveal h3 {
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.hero-copy h1 {
+  max-width: 11ch;
+}
+
+.hero-copy p {
+  text-wrap: pretty;
+}
+
+.section-reveal {
+  position: relative;
+  padding-block: 5.75rem;
+}
+
+.section-reveal > .max-w-7xl,
+.section-reveal > .max-w-4xl {
+  position: relative;
+}
+
+.section-reveal h2 {
+  line-height: 1.04;
 }
 
 .nav-link {
   position: relative;
   transition:
-    color 220ms ease,
-    transform 220ms ease,
-    opacity 220ms ease;
+    color var(--duration-base) ease,
+    transform var(--duration-base) ease,
+    opacity var(--duration-base) ease;
 }
 
 .nav-link::after {
@@ -95,8 +153,8 @@ body {
   transform: scaleX(0.35);
   transform-origin: center;
   transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+    opacity var(--duration-base) ease,
+    transform var(--duration-base) ease;
 }
 
 .nav-link:hover,
@@ -111,7 +169,7 @@ body {
 }
 
 .mobile-menu {
-  animation: mobileMenuIn 220ms ease both;
+  animation: mobileMenuIn 240ms var(--ease-smooth) both;
 }
 
 .action-button,
@@ -121,11 +179,11 @@ body {
 .metric-card,
 .project-card {
   transition:
-    transform 240ms ease,
-    box-shadow 240ms ease,
-    border-color 240ms ease,
-    background-color 240ms ease,
-    opacity 240ms ease;
+    transform var(--duration-base) ease,
+    box-shadow var(--duration-base) ease,
+    border-color var(--duration-base) ease,
+    background-color var(--duration-base) ease,
+    opacity var(--duration-base) ease;
 }
 
 .action-button {
@@ -140,13 +198,13 @@ body {
   inset: 0;
   background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.18) 45%, transparent 70%);
   transform: translateX(-120%);
-  transition: transform 520ms ease;
+  transition: transform 560ms var(--ease-smooth);
 }
 
 .action-button:hover,
 .action-button:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 18px 42px rgba(35, 35, 35, 0.16);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .action-button:hover::before,
@@ -162,7 +220,7 @@ body {
 
 .action-button--light:hover,
 .action-button--light:focus-visible {
-  box-shadow: 0 18px 42px rgba(35, 35, 35, 0.10);
+  box-shadow: var(--shadow-card);
 }
 
 .icon-button {
@@ -179,6 +237,7 @@ body {
 .metric-card,
 .contact-card {
   will-change: transform;
+  border-radius: var(--radius-card);
 }
 
 .motion-card:hover,
@@ -186,15 +245,40 @@ body {
 .metric-card:hover,
 .contact-card:hover,
 .contact-card:focus-visible {
-  transform: translateY(-5px);
-  box-shadow: 0 24px 70px rgba(35, 35, 35, 0.14);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.reveal-grid > .motion-card,
+.reveal-grid > .metric-card,
+.reveal-grid > .contact-card,
+.reveal-grid > .project-card {
+  height: 100%;
+}
+
+.metric-card {
+  min-height: 8.25rem;
+}
+
+.contact-card {
+  min-height: 5.75rem;
 }
 
 .project-card:hover,
 .project-card:focus-within {
-  transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 26px 76px rgba(0, 0, 0, 0.22);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: var(--shadow-dark-card);
+}
+
+.project-card > div:last-child {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.project-card p {
+  text-wrap: pretty;
 }
 
 .project-media {
@@ -227,8 +311,8 @@ body {
   filter: drop-shadow(0 14px 28px rgba(35, 35, 35, 0.14));
   transform: scale(0.98);
   transition:
-    transform 420ms ease,
-    filter 420ms ease;
+    transform 420ms var(--ease-smooth),
+    filter 420ms var(--ease-smooth);
 }
 
 .project-card:hover .project-logo,
@@ -241,10 +325,11 @@ body {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  animation: logoFloat 7s ease-in-out infinite;
+  border-radius: var(--radius-panel);
+  animation: logoFloat 8s ease-in-out infinite;
   transition:
-    transform 320ms ease,
-    box-shadow 320ms ease;
+    transform 360ms var(--ease-smooth),
+    box-shadow 360ms var(--ease-smooth);
 }
 
 .logo-panel::before {
@@ -261,16 +346,16 @@ body {
 }
 
 .logo-panel:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 28px 80px rgba(35, 35, 35, 0.14);
+  transform: translateY(-4px) scale(1.008);
+  box-shadow: 0 28px 76px rgba(35, 35, 35, 0.13);
 }
 
 .motion-ready [data-reveal] {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(18px);
   transition:
-    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--duration-reveal) var(--ease-smooth),
+    transform var(--duration-reveal) var(--ease-smooth);
 }
 
 .motion-ready [data-reveal].is-visible {
@@ -283,8 +368,8 @@ body {
   opacity: 0;
   transform: translateY(16px);
   transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 720ms var(--ease-smooth),
+    transform 720ms var(--ease-smooth);
 }
 
 .motion-ready .hero-copy[data-reveal].is-visible > *,
@@ -374,6 +459,51 @@ button:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .hero-section > .max-w-7xl {
+    min-height: auto;
+    padding-block: 3.75rem 4.75rem;
+  }
+
+  .hero-copy h1 {
+    max-width: 10.5ch;
+    font-size: 2.65rem;
+    line-height: 1;
+  }
+
+  .hero-copy p {
+    max-width: 100%;
+  }
+
+  .hero-copy .action-button {
+    width: 100%;
+  }
+
+  .section-reveal {
+    padding-block: 4.25rem;
+  }
+
+  .section-reveal h2 {
+    font-size: 2.15rem;
+    line-height: 1.08;
+  }
+
+  .section-reveal h3 {
+    line-height: 1.12;
+  }
+
+  .metric-card {
+    min-height: auto;
+  }
+
+  .project-media {
+    aspect-ratio: 16 / 11;
+    padding: 1.25rem;
+  }
+
+  .project-logo {
+    transform: none;
+  }
+
   .motion-card:hover,
   .motion-card:focus-within,
   .metric-card:hover,

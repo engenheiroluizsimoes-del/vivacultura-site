@@ -32,6 +32,8 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - Aplicacao da tagline e das diretrizes iniciais do manual no front-end revalidada em 2026-07-01 com `npm run build`, verificacao do hero, menu mobile, links institucionais e ausencia de placeholders.
 - Secao Projetos atualizada em 2026-07-01 com logos reais e textos institucionais dos projetos Canta Bairro Gospel, Canta Bairro Sertanejo e Dancando a Vida, removendo imagens externas genericas dos cards.
 - Build local validado com `npm run build` em 2026-07-01 apos atualizar a secao Projetos com logos reais.
+- Refinamento visual profissional aplicado em 2026-07-01, consolidando tokens de superficie, borda, sombra, ritmo de secoes, hierarquia do hero, consistencia dos cards, animacoes e ajustes responsivos sem alterar conteudo institucional.
+- Build local validado com `npm run build` em 2026-07-01 apos o refinamento visual profissional.
 
 ## Auditoria npm - 2026-06-27
 
@@ -59,7 +61,7 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - Auditar o site publicado contra o manual atualizado de imagem e marca, verificando tagline, posicionamento, tom de voz, identidade visual, cores, tipografia, hierarquia de conteudo, acessibilidade e coerencia institucional.
 - Validar build local apos instalacao de dependencias quando o ambiente ainda nao tiver `node_modules/`.
 - Confirmar que `node_modules/` e `dist/` continuam fora do versionamento.
-- Validar futuramente as imagens externas da Unsplash usadas na secao de projetos.
+- Validar visualmente o site publicado apos deploy do refinamento, com foco em desktop, mobile, menu, hero, projetos, contato, acessibilidade e links institucionais.
 - Avaliar futuramente a renomeacao do pacote em `package.json`, atualmente `@figma/my-make-file`, somente com tarefa explicita.
 - Revisar SEO tecnico basico em tarefa propria.
 - Revisar acessibilidade em tarefa propria.
