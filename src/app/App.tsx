@@ -2,6 +2,9 @@ import React from 'react';
 import { Menu, X } from 'lucide-react';
 import squareLogo from '../assets/0f91f03b39f7cbb5b458f36bab100422e8d6a94b.png';
 import wideLogo from '../assets/c8a1c09d0148895d62a21222e31c4f1947cf7561.png';
+import cantaBairroGospelLogo from '../assets/projetos/logos/canta-bairro-gospel.jpeg.jpeg';
+import cantaBairroSertanejoLogo from '../assets/projetos/logos/canta-bairro-sertanejo.jpeg.jpeg';
+import dancandoAVidaLogo from '../assets/projetos/logos/dancando-a-vida.jpeg.jpeg';
 import { instituto } from '../data/instituto';
 import '../styles/viva.css';
 
@@ -23,28 +26,28 @@ const areasAtuacao = [
 
 const projetosInstitucionais = [
   {
-    label: 'Formação',
-    title: 'Oficinas e capacitação cultural',
-    desc: 'Processos formativos voltados ao desenvolvimento artístico, criativo e profissional no setor cultural.',
+    label: 'Música e comunidade',
+    title: 'Canta Bairro Gospel',
+    desc: 'Projeto sociocultural que leva música, encontro comunitário e expressão artística aos bairros, fortalecendo vínculos e ampliando o acesso à cultura.',
     color: 'var(--color-yellowv)',
-    image: 'https://images.unsplash.com/photo-1758671914940-ccab366cd5b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0aGVhdHJlJTIwZGFuY2UlMjBjbGFzcyUyMHBlcmZvcm1hbmNlfGVufDF8fHx8MTc3NDkzNjI2M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    alt: 'Participantes em atividade de formação artística',
+    image: cantaBairroGospelLogo,
+    alt: 'Logo do projeto Canta Bairro Gospel',
   },
   {
-    label: 'Difusão artística',
-    title: 'Eventos e ações culturais',
-    desc: 'Iniciativas de circulação, encontros, apresentações e experiências culturais abertas à comunidade.',
+    label: 'Cultura sertaneja',
+    title: 'Canta Bairro Sertanejo',
+    desc: 'Ação cultural voltada à valorização da música sertaneja, da convivência comunitária e da ocupação artística dos espaços públicos.',
     color: 'var(--color-pinkv)',
-    image: 'https://images.unsplash.com/photo-1766288019850-1cf72681be08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBhcnRzJTIwYW5kJTIwY3VsdHVyZSUyMGV2ZW50fGVufDF8fHx8MTc3NDkzNjI1OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    alt: 'Evento cultural comunitário',
+    image: cantaBairroSertanejoLogo,
+    alt: 'Logo do projeto Canta Bairro Sertanejo',
   },
   {
-    label: 'Comunidade',
-    title: 'Projetos socioculturais',
-    desc: 'Ações de inclusão social, fortalecimento comunitário, preservação cultural e apoio ao setor cultural.',
+    label: 'Dança e formação',
+    title: 'Dançando a Vida',
+    desc: 'Projeto de dança, formação e expressão corporal que promove desenvolvimento humano, pertencimento e transformação social por meio da arte.',
     color: 'var(--color-tealv)',
-    image: 'https://images.unsplash.com/photo-1590099453132-312adcca5d77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpc3RpYyUyMGNvbW11bml0eSUyMHByb2plY3QlMjBwZW9wbGV8ZW58MXx8fHwxNzc0OTM2MjY3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    alt: 'Grupo em projeto artístico comunitário',
+    image: dancandoAVidaLogo,
+    alt: 'Logo do projeto Dançando a Vida',
   },
 ];
 
@@ -366,18 +369,18 @@ export default function App() {
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <div>
                 <div className="text-sm uppercase tracking-[0.25em] font-bold text-white/45">Projetos e iniciativas</div>
-                <h2 className="mt-4 text-4xl md:text-5xl font-black tracking-tight">Projetos socioculturais com foco em formação, difusão artística e comunidade.</h2>
+                <h2 className="mt-4 text-4xl md:text-5xl font-black tracking-tight">Projetos reais que aproximam arte, comunidade e transformação social.</h2>
               </div>
               <p className="max-w-xl text-white/70 leading-relaxed">
-                As frentes institucionais do Viva Cultura reúnem oficinas, eventos, capacitações, preservação cultural e apoio ao setor cultural.
+                Iniciativas do Instituto Viva Cultura voltadas à música, dança, formação, convivência comunitária e acesso cultural.
               </p>
             </div>
 
             <div className="reveal-grid grid md:grid-cols-3 gap-5 mt-10">
               {projetosInstitucionais.map((item) => (
                 <article key={item.title} className="project-card motion-card rounded-[1.8rem] overflow-hidden bg-white/5 border border-white/10 hover:bg-white/10 transition-all group flex flex-col">
-                  <div className="h-48 w-full overflow-hidden">
-                    <img src={item.image} alt={item.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="project-media" style={{ '--project-accent': item.color } as React.CSSProperties}>
+                    <img src={item.image} alt={item.alt} className="project-logo" />
                   </div>
                   <div className="p-7 flex-1">
                     <div className="text-sm uppercase tracking-[0.2em] font-bold" style={{ color: item.color }}>{item.label}</div>

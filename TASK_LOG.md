@@ -30,6 +30,8 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - Build local validado com `npm run build` em 2026-07-01 apos a aplicacao inicial do manual no front-end.
 - Front-end inicial revisado novamente em 2026-07-01 considerando o arquivo `docs/brand/manual_instituto-viva-cultura.pdf` ja presente no repositorio, com refinamento da microcopy institucional e restauracao do portugues visivel com acentuacao adequada.
 - Aplicacao da tagline e das diretrizes iniciais do manual no front-end revalidada em 2026-07-01 com `npm run build`, verificacao do hero, menu mobile, links institucionais e ausencia de placeholders.
+- Secao Projetos atualizada em 2026-07-01 com logos reais e textos institucionais dos projetos Canta Bairro Gospel, Canta Bairro Sertanejo e Dancando a Vida, removendo imagens externas genericas dos cards.
+- Build local validado com `npm run build` em 2026-07-01 apos atualizar a secao Projetos com logos reais.
 
 ## Auditoria npm - 2026-06-27
 
