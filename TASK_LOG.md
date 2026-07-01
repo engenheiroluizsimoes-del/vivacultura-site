@@ -28,6 +28,7 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - `docs/brand/BRAND_GUIDE.md` criado em 2026-07-01 como resumo tecnico permanente do manual da marca para orientar futuras tarefas de front-end, textos, fotos, layout e identidade visual.
 - Tagline oficial e primeiras diretrizes do manual aplicadas no front-end em 2026-07-01, com atualizacao do hero, da hierarquia visual principal e dos textos institucionais de abertura.
 - Build local validado com `npm run build` em 2026-07-01 apos a aplicacao inicial do manual no front-end.
+- Front-end inicial revisado novamente em 2026-07-01 considerando o arquivo `docs/brand/manual_instituto-viva-cultura.pdf` ja presente no repositorio, com refinamento da microcopy institucional e restauracao do portugues visivel com acentuacao adequada.
 
 ## Auditoria npm - 2026-06-27
 
@@ -52,7 +53,6 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 
 ## Pendencias atuais
 
-- Incorporar o arquivo `docs/brand/manual_instituto-viva-cultura.pdf` ao repositorio para consulta local permanente, pois na data de 2026-07-01 o PDF ainda nao estava presente em `docs/brand/`.
 - Auditar o site publicado contra o manual atualizado de imagem e marca, verificando tagline, posicionamento, tom de voz, identidade visual, cores, tipografia, hierarquia de conteudo, acessibilidade e coerencia institucional.
 - Validar build local apos instalacao de dependencias quando o ambiente ainda nao tiver `node_modules/`.
 - Confirmar que `node_modules/` e `dist/` continuam fora do versionamento.
