@@ -25,6 +25,7 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - `vite` atualizado de `6.3.5` para `6.4.3` na mesma linha major.
 - Auditorias finais `npm audit` e `npm audit --omit=dev` passaram sem vulnerabilidades.
 - Manual atualizado de imagem e marca incorporado em 2026-06-28 como referencia oficial de identidade verbal, visual, tom de voz, posicionamento, publicos prioritarios e diretrizes institucionais do projeto.
+- `docs/brand/BRAND_GUIDE.md` criado em 2026-07-01 como resumo tecnico permanente do manual da marca para orientar futuras tarefas de front-end, textos, fotos, layout e identidade visual.
 
 ## Auditoria npm - 2026-06-27
 
@@ -49,6 +50,7 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 
 ## Pendencias atuais
 
+- Incorporar o arquivo `docs/brand/manual_instituto-viva-cultura.pdf` ao repositorio para consulta local permanente, pois na data de 2026-07-01 o PDF ainda nao estava presente em `docs/brand/`.
 - Auditar o site publicado contra o manual atualizado de imagem e marca, verificando tagline, posicionamento, tom de voz, identidade visual, cores, tipografia, hierarquia de conteudo, acessibilidade e coerencia institucional.
 - Validar build local apos instalacao de dependencias quando o ambiente ainda nao tiver `node_modules/`.
 - Confirmar que `node_modules/` e `dist/` continuam fora do versionamento.
