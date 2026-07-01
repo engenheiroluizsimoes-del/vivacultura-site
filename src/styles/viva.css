@@ -52,6 +52,14 @@ body {
   backdrop-filter: blur(12px);
 }
 
+.hero-badge {
+  box-shadow: 0 10px 30px rgba(35, 35, 35, 0.08);
+}
+
+.hero-tagline {
+  max-width: 11ch;
+}
+
 .site-header {
   transition:
     background-color 240ms ease,
