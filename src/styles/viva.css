@@ -613,11 +613,13 @@ button:focus-visible {
   }
 
   .hero-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 1.65rem;
     text-align: center;
   }
 
   .hero-copy {
+    order: 1 !important;
     max-width: 24rem;
     margin-inline: auto;
   }
@@ -678,6 +680,11 @@ button:focus-visible {
 
   .hero-metrics .metric-card > div:first-child {
     font-size: 1.45rem;
+  }
+
+  .hero-visual {
+    order: 5 !important;
+    margin-top: 0.25rem;
   }
 
   .hero-visual .logo-panel {
