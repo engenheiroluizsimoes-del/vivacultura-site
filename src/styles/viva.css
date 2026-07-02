@@ -48,13 +48,26 @@ body {
 
 .brand-ring {
   background:
-    radial-gradient(circle at 20% 20%, rgba(213,73,30,0.12), transparent 25%),
-    radial-gradient(circle at 80% 15%, rgba(242,195,25,0.12), transparent 22%),
-    radial-gradient(circle at 85% 50%, rgba(227,28,140,0.11), transparent 22%),
-    radial-gradient(circle at 55% 80%, rgba(90,61,129,0.12), transparent 22%),
-    radial-gradient(circle at 20% 75%, rgba(47,196,178,0.12), transparent 22%);
+    radial-gradient(circle at 15% 18%, color-mix(in srgb, var(--color-redv) 12%, transparent), transparent 25%),
+    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--color-yellowv) 14%, transparent), transparent 22%),
+    radial-gradient(circle at 88% 48%, color-mix(in srgb, var(--color-pinkv) 10%, transparent), transparent 22%),
+    radial-gradient(circle at 56% 80%, color-mix(in srgb, var(--color-purplev) 11%, transparent), transparent 22%),
+    radial-gradient(circle at 18% 76%, color-mix(in srgb, var(--color-tealv) 13%, transparent), transparent 22%);
   background-size: 118% 118%;
   animation: brandField 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-graphite) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-graphite) 4%, transparent) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.82), transparent 88%);
+  opacity: 0.36;
   pointer-events: none;
 }
 
@@ -79,6 +92,7 @@ body {
 }
 
 .site-header {
+  background-color: color-mix(in srgb, var(--color-cream) 91%, white);
   transition:
     background-color var(--duration-base) ease,
     border-color var(--duration-base) ease,
@@ -87,16 +101,55 @@ body {
 }
 
 .site-header--scrolled {
-  background-color: rgba(246, 242, 234, 0.96);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 14px 38px rgba(35, 35, 35, 0.08);
+  background-color: color-mix(in srgb, var(--color-cream) 96%, white);
+  border-color: color-mix(in srgb, var(--color-graphite) 10%, transparent);
+  box-shadow: 0 16px 42px rgba(35, 35, 35, 0.09);
+}
+
+.header-shell {
+  min-height: 5rem;
+  padding-block: 0.82rem;
+}
+
+.brand-link {
+  border-radius: 1.15rem;
+  transition:
+    transform var(--duration-base) ease,
+    opacity var(--duration-base) ease,
+    filter var(--duration-base) ease;
+}
+
+.brand-link:hover,
+.brand-link:focus-visible {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 12px 24px rgba(35, 35, 35, 0.08));
+}
+
+.brand-link img {
+  width: auto;
+  height: clamp(2.35rem, 4.2vw, 3.25rem) !important;
+  max-width: min(13.5rem, 56vw);
+  object-fit: contain;
+}
+
+.site-header nav {
+  gap: clamp(1.15rem, 2.1vw, 2rem);
+}
+
+.site-header .nav-link {
+  letter-spacing: 0;
+}
+
+.site-header .action-button {
+  border: 1px solid color-mix(in srgb, var(--color-graphite) 10%, transparent);
+  box-shadow: 0 10px 26px rgba(35, 35, 35, 0.12);
 }
 
 .hero-section > .max-w-7xl {
-  min-height: min(760px, calc(100svh - 4.5rem));
+  min-height: min(800px, calc(100svh - 4.5rem));
   display: flex;
   align-items: center;
-  padding-block: 5.5rem;
+  padding-block: 3.8rem 4.65rem;
 }
 
 .hero-section > .max-w-7xl > .grid {
@@ -111,11 +164,75 @@ body {
 }
 
 .hero-copy h1 {
-  max-width: 11ch;
+  max-width: 11.5ch;
+  font-size: clamp(3.45rem, 5.25vw, 4.85rem);
 }
 
 .hero-copy p {
   text-wrap: pretty;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  backdrop-filter: blur(14px);
+}
+
+.hero-copy > p:first-of-type {
+  letter-spacing: 0;
+}
+
+.hero-copy .action-button {
+  min-height: 3.65rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-metrics {
+  max-width: 42rem;
+}
+
+.hero-metrics .metric-card {
+  min-height: 7.75rem;
+  padding: 1.15rem;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-visual .logo-panel {
+  width: min(100%, 31.5rem);
+  min-height: clamp(16.25rem, 30vw, 25rem);
+  aspect-ratio: 1.08 / 1;
+  padding: clamp(1.55rem, 4vw, 3rem);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.76)),
+    radial-gradient(circle at 22% 18%, color-mix(in srgb, var(--color-yellowv) 18%, transparent), transparent 34%),
+    radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--color-tealv) 15%, transparent), transparent 34%);
+}
+
+.hero-visual .logo-panel::after {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  z-index: -1;
+  border-radius: calc(var(--radius-panel) - 0.55rem);
+  border: 1px solid color-mix(in srgb, var(--color-graphite) 6%, transparent);
+  pointer-events: none;
+}
+
+.hero-visual .logo-panel img {
+  width: min(100%, 27rem) !important;
+  height: auto !important;
+  max-height: clamp(9.5rem, 23vw, 16.75rem);
+  object-fit: contain;
+  filter: drop-shadow(0 18px 36px rgba(35, 35, 35, 0.13));
 }
 
 .section-reveal {
@@ -459,9 +576,28 @@ button:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .header-shell {
+    min-height: 4.35rem;
+    padding-block: 0.62rem;
+  }
+
+  .brand-link img {
+    height: 2.45rem !important;
+    max-width: min(11rem, 66vw);
+  }
+
+  .mobile-menu {
+    max-height: calc(100svh - 4.35rem);
+    overflow-y: auto;
+  }
+
   .hero-section > .max-w-7xl {
     min-height: auto;
-    padding-block: 3.75rem 4.75rem;
+    padding-block: 3.35rem 4.5rem;
+  }
+
+  .hero-grid {
+    gap: 2.35rem;
   }
 
   .hero-copy h1 {
@@ -476,6 +612,26 @@ button:focus-visible {
 
   .hero-copy .action-button {
     width: 100%;
+  }
+
+  .hero-metrics {
+    gap: 0.85rem;
+  }
+
+  .hero-metrics .metric-card {
+    min-height: auto;
+  }
+
+  .hero-visual .logo-panel {
+    width: min(calc(100vw - 2.5rem), 20rem);
+    min-height: 13rem;
+    padding: 1.25rem;
+    border-radius: 1.45rem;
+  }
+
+  .hero-visual .logo-panel img {
+    width: 88% !important;
+    max-height: 8.25rem;
   }
 
   .section-reveal {

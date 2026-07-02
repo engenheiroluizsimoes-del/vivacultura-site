@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto Viva Cultura — Arte que acolhe, acesso que transforma</title>
+  
+  <!-- Tailwind CSS para design ágil, responsivo e moderno -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              graphite: '#1A1A1A',
+              redv: '#E30613',     /* Vermelho oficial do manual */
+              pinkv: '#E6007E',    /* Rosa oficial do manual */
+              purplev: '#6F2C91',  /* Roxo oficial do manual */
+              tealv: '#00A19A',    /* Teal oficial do manual */
+              bgLight: '#FAF7D9',  /* Fundo Amarelo Claro oficial solicitado */
+              bgLightWarm: '#FCF9E3',
+              cardBg: 'rgba(255, 255, 255, 0.65)'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts - Plus Jakarta Sans & Inter (Tipografias Oficiais) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* Definição das Variáveis de Cores Oficiais */
+    :root {
+      --color-graphite: #1A1A1A;
+      --color-redv: #E30613;
+      --color-pinkv: #E6007E;
+      --color-purplev: #6F2C91;
+      --color-tealv: #00A19A;
+    }
+
+    body {
+      background-color: #FAF7D9; /* Amarelo Claro Puro */
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Grelha de design sofisticada em harmonia com as cores do manual */
+    .brand-grid-bg {
+      background-image: 
+        radial-gradient(circle at 100% 20%, rgba(227, 6, 19, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 0% 60%, rgba(0, 161, 154, 0.03) 0%, transparent 45%),
+        radial-gradient(circle at 80% 90%, rgba(111, 44, 145, 0.03) 0%, transparent 50%);
+    }
+
+    /* Sistema Sênior de Revelação por Scroll (Scroll Reveal Nativo) */
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-element.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Atrasos (Delays) Sequenciais */
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+    .delay-500 { transition-delay: 500ms; }
+    .delay-600 { transition-delay: 600ms; }
+    .delay-700 { transition-delay: 700ms; }
+
+    /* Flutuação suave para a Logomarca Principal */
+    @keyframes floatingLogo {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-8px) scale(1.01); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+    .floating-logo-container {
+      animation: floatingLogo 6s ease-in-out infinite;
+    }
+
+    /* Gradiente Oficial do Instituto */
+    .brand-gradient-text {
+      background: linear-gradient(135deg, var(--color-redv) 0%, var(--color-pinkv) 50%, var(--color-purplev) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="antialiased text-brand-graphite brand-grid-bg bg-brand-bgLight">
+
+  <!-- PAINEL DE CONTROLE DE DESENVOLVIMENTO (Apenas para visualização no protótipo) -->
+  <div class="fixed bottom-6 right-6 z-50 bg-brand-graphite/95 backdrop-blur-md text-white px-5 py-4 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/10 text-xs flex flex-col gap-3 max-w-xs">
+    <div class="flex items-center justify-between gap-4">
+      <span class="font-black tracking-widest uppercase text-white/50 text-[9px]">Design Audit v2.5</span>
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+    </div>
+    <p class="text-white/70 text-[11px] leading-relaxed">Fundo amarelo claro, textos originais e logos oficiais restaurados.</p>
+    <div class="flex gap-2 mt-1">
+      <button onclick="resetAndPlay()" class="flex-1 bg-white/10 hover:bg-white/20 active:scale-95 transition-all py-2.5 rounded-xl font-bold border border-white/5">
+        Reiniciar Intro
+      </button>
+      <button onclick="scrollToSection('projetos')" class="flex-1 bg-white/10 hover:bg-white/20 active:scale-95 transition-all py-2.5 rounded-xl font-bold border border-white/5">
+        Projetos ↓
+      </button>
+    </div>
+  </div>
+
+  <!-- CABEÇALHO (NAVBAR) COM LOGO OFICIAL E ABAS DO SITE -->
+  <header class="sticky top-0 z-40 bg-brand-bgLight/90 backdrop-blur-md border-b border-brand-graphite/[0.05] transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+      
+      <!-- LOGO OFICIAL INCORPORADA -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="relative w-12 h-12 flex items-center justify-center">
+          <!-- Fallback elegante com SVG se a imagem local não carregar -->
+          <img 
+            src="Logo_VivaCultura.png" 
+            alt="Instituto Viva Cultura" 
+            class="w-full h-full object-contain"
+            onerror="this.style.display='none'; document.getElementById('fallback-header-svg').classList.remove('hidden')"
+          />
+          <div id="fallback-header-svg" class="hidden w-full h-full">
+            <svg viewBox="0 0 120 120" fill="none" class="w-full h-full">
+              <circle cx="60" cy="60" r="54" fill="var(--color-redv)" />
+              <path d="M40 40 L80 80 M80 40 L40 80" stroke="white" stroke-width="12" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-black text-sm tracking-[0.05em] uppercase leading-none text-brand-graphite">Instituto</span>
+          <span class="font-black text-xs tracking-[0.22em] uppercase text-brand-redv leading-none mt-1">Viva Cultura</span>
+        </div>
+      </a>
+
+      <!-- ABAS OFICIAIS DO SITE (NÃO MODIFICADAS) -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-black tracking-widest uppercase text-brand-graphite/80">
+        <a href="#" class="hover:text-brand-redv transition duration-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-brand-redv after:transform after:scale-x-100 transition-all">Início</a>
+        <a href="#quem-somos" class="hover:text-brand-redv transition duration-300">Quem somos</a>
+        <a href="#essencia" class="hover:text-brand-redv transition duration-300">Essência</a>
+        <a href="#areas-atuacao" class="hover:text-brand-redv transition duration-300">Áreas de atuação</a>
+        <a href="#projetos" class="hover:text-brand-redv transition duration-300">Projetos</a>
+      </nav>
+
+      <!-- BOTÃO DE ATENDIMENTO / FALE CONOSCO -->
+      <div class="flex items-center gap-4">
+        <a href="#contato" class="hidden sm:inline-flex px-5 py-3 rounded-xl border border-brand-graphite/15 text-xs font-black tracking-widest uppercase hover:bg-brand-graphite hover:text-white transition-all duration-300">
+          Fale Conosco
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEÇÃO HERO (MANTENDO OS DOIS PARÁGRAFOS ORIGINAIS INTEGRALMENTE) -->
+  <section class="relative min-h-[calc(100vh-80px)] flex items-center overflow-hidden py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- COLUNA DE TEXTOS (ORIGINAL - SEM MODIFICAÇÃO DE TEXTO) -->
+        <div class="lg:col-span-7 order-2 lg:order-1 flex flex-col justify-center">
+          
+          <div class="reveal-element inline-flex self-start items-center gap-2.5 px-4.5 py-2 rounded-full border border-brand-graphite/10 bg-white/80 backdrop-blur-md text-[10px] font-black uppercase tracking-[0.25em] text-brand-graphite/80 shadow-sm mb-6">
+            Instituto Viva Cultura
+          </div>
+
+          <p class="reveal-element delay-100 text-xs sm:text-sm font-black uppercase tracking-[0.18em] text-brand-graphite/60 mb-3">
+            Cultura viva | Formação | Inclusão | Transformação social
+          </p>
+
+          <h1 class="reveal-element delay-200 text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-black tracking-tight text-brand-graphite leading-[1.05] lg:leading-[0.96] mb-6">
+            Arte que acolhe,<br>
+            <span class="brand-gradient-text block mt-1 pb-1">
+              acesso que transforma.
+            </span>
+          </h1>
+
+          <!-- PARÁGRAFO ORIGINAL 1 -->
+          <p class="reveal-element delay-300 max-w-xl text-base sm:text-lg md:text-xl text-brand-graphite/85 leading-relaxed font-semibold mb-4">
+            No Instituto Viva Cultura, aproximamos pessoas da arte, da formação e das oportunidades culturais com ações acolhedoras, estruturadas e relevantes para a comunidade.
+          </p>
+
+          <!-- PARÁGRAFO ORIGINAL 2 -->
+          <p class="reveal-element delay-400 max-w-xl text-sm sm:text-base text-brand-graphite/70 leading-relaxed mb-10">
+            Promovemos desenvolvimento humano e social por meio de formações artísticas estruturadas, ampliando o acesso e gerando transformação social com escuta, presença institucional e impacto real.
+          </p>
+
+          <!-- BOTÕES PRINCIPAIS -->
+          <div class="reveal-element delay-500 flex flex-col sm:flex-row gap-4 mb-14">
+            <a href="#projetos" class="px-8 py-4 rounded-xl bg-brand-graphite text-white font-extrabold tracking-widest uppercase text-xs shadow-md hover:bg-brand-redv hover:-translate-y-1 active:translate-y-0 transition-all duration-300 text-center">
+              Conheça nossos projetos
+            </a>
+            <a href="https://wa.me/5566996563806" target="_blank" class="px-8 py-4 rounded-xl border border-brand-graphite/15 bg-white/50 backdrop-blur-sm text-brand-graphite font-extrabold tracking-widest uppercase text-xs hover:bg-white hover:-translate-y-1 active:translate-y-0 transition-all duration-300 text-center">
+              Fale com o Instituto
+            </a>
+          </div>
+
+          <!-- MINI CARDS EM CASCATA COM AS CORES DA DIRETRIZ -->
+          <div class="reveal-element delay-600 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
+            <div class="group bg-brand-cardBg backdrop-blur-md rounded-2xl p-5 border border-black/[0.04] shadow-sm hover:shadow-md hover:bg-white hover:border-brand-redv/20 hover:-translate-y-1 transition-all duration-300">
+              <div class="text-base font-black text-brand-redv flex items-center gap-2">Cultura</div>
+              <p class="mt-2 text-xs text-brand-graphite/70 leading-relaxed">Acesso, pertencimento e participação cultural</p>
+            </div>
+
+            <div class="group bg-brand-cardBg backdrop-blur-md rounded-2xl p-5 border border-black/[0.04] shadow-sm hover:shadow-md hover:bg-white hover:border-brand-tealv/20 hover:-translate-y-1 transition-all duration-300">
+              <div class="text-base font-black text-brand-tealv flex items-center gap-2">Formação</div>
+              <p class="mt-2 text-xs text-brand-graphite/70 leading-relaxed">Aprendizagem, oficinas e desenvolvimento</p>
+            </div>
+
+            <div class="group bg-brand-cardBg backdrop-blur-md rounded-2xl p-5 border border-black/[0.04] shadow-sm hover:shadow-md hover:bg-white hover:border-brand-purplev/20 hover:-translate-y-1 transition-all duration-300">
+              <div class="text-base font-black text-brand-purplev flex items-center gap-2">Inclusão</div>
+              <p class="mt-2 text-xs text-brand-graphite/70 leading-relaxed">Oportunidades reais e transformação social</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLUNA ILUSTRATIVA (LOGOMARCA COMPLETA DO SEU DIRETÓRIO) -->
+        <div class="reveal-element delay-600 lg:col-span-5 order-1 lg:order-2 flex items-center justify-center relative">
+          <div class="absolute inset-0 m-auto w-80 h-80 rounded-full bg-gradient-to-tr from-brand-redv/8 via-brand-pinkv/3 to-brand-purplev/8 blur-3xl animate-pulse"></div>
+          
+          <div class="floating-logo-container w-full max-w-[380px] aspect-square rounded-[3rem] bg-gradient-to-b from-white to-white/75 shadow-[0_20px_45px_rgba(0,0,0,0.03)] border border-white p-12 flex flex-col items-center justify-center group hover:shadow-[0_25px_55px_rgba(0,0,0,0.06)] transition-all duration-500">
+            <!-- Tenta carregar a logo_completa_padrao.png enviada por você -->
+            <img 
+              src="logo_completa_padrao.png" 
+              alt="Logo Completa Instituto" 
+              class="w-full h-full object-contain filter drop-shadow-sm group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display='none'; document.getElementById('fallback-hero-logo').classList.remove('hidden')"
+            />
+            
+            <div id="fallback-hero-logo" class="hidden text-center">
+              <svg class="w-32 h-32 mx-auto mb-4" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="54" stroke="url(#hero-circle-grad)" stroke-width="2" stroke-dasharray="6 3" />
+                <path d="M60 12C60 12 76 52 110 60C76 68 60 108 60 108C60 108 44 68 10 60C44 52 60 12 60 12Z" fill="url(#hero-petals-grad)" />
+                <defs>
+                  <linearGradient id="hero-circle-grad" x1="10" y1="12" x2="110" y2="108" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="var(--color-redv)" />
+                    <stop offset="100%" stop-color="var(--color-purplev)" />
+                  </linearGradient>
+                  <linearGradient id="hero-petals-grad" x1="10" y1="12" x2="110" y2="108" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="var(--color-redv)" />
+                    <stop offset="50%" stop-color="var(--color-pinkv)" />
+                    <stop offset="100%" stop-color="var(--color-purplev)" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span class="block text-sm font-black tracking-widest text-brand-graphite uppercase">Instituto</span>
+              <span class="block text-xs font-black tracking-widest text-brand-redv uppercase mt-1">Viva Cultura</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO QUEM SOMOS (INTEGRAL COM TEXTO OFICIAL) -->
+  <section id="quem-somos" class="relative py-28 bg-white border-t border-brand-graphite/[0.03]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <div class="lg:col-span-4 reveal-element">
+          <span class="text-xs font-black tracking-[0.25em] text-brand-redv uppercase block mb-3">Quem somos</span>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-brand-graphite leading-tight">
+            Muito além de eventos, somos transformação cultural com presença humana e compromisso social.
+          </h2>
+          <div class="w-16 h-1 bg-gradient-to-r from-brand-redv to-brand-pinkv mt-6 rounded-full"></div>
+        </div>
+
+        <div class="lg:col-span-8 reveal-element delay-200">
+          <p class="text-lg text-brand-graphite/80 leading-relaxed font-semibold mb-6">
+            Somos a cultura em movimento: atuamos para que a cultura acolha, a formação gere autonomia e a inclusão crie caminhos reais para artists, alunos, parceiros e comunidade.
+          </p>
+          <p class="text-sm sm:text-base text-brand-graphite/60 leading-relaxed mb-8">
+            O Instituto Viva Cultura atua na promoção da cultura, da arte, da formação e da inclusão social, desenvolvendo projetos socioculturais, oficinas, eventos, ações de difusão artística, capacitação, preservação cultural e fortalecimento comunitário.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-6 mt-10">
+            <div class="flex gap-4 p-5 rounded-2xl bg-brand-bgLight/40 border border-brand-graphite/[0.03]">
+              <div class="w-10 h-10 rounded-xl bg-brand-redv/10 flex items-center justify-center text-brand-redv font-bold text-sm shrink-0">
+                A
+              </div>
+              <div>
+                <h4 class="font-extrabold text-brand-graphite text-sm uppercase tracking-wider">Posicionamento</h4>
+                <p class="text-xs text-brand-graphite/60 mt-1 leading-relaxed">Arte que acolhe, acesso que transforma e impacto real, social e cultural para todos.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 p-5 rounded-2xl bg-brand-bgLight/40 border border-brand-graphite/[0.03]">
+              <div class="w-10 h-10 rounded-xl bg-brand-tealv/10 flex items-center justify-center text-brand-tealv font-bold text-sm shrink-0">
+                I
+              </div>
+              <div>
+                <h4 class="font-extrabold text-brand-graphite text-sm uppercase tracking-wider">Institucional</h4>
+                <p class="text-xs text-brand-graphite/60 mt-1 leading-relaxed">Clareza, credibilidade e boa governança como norteadores administrativos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO ESSÊNCIA (NÃO MODIFICADA) -->
+  <section id="essencia" class="relative py-28 bg-brand-bgLightWarm/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="max-w-3xl mb-16 reveal-element">
+        <span class="text-xs font-black tracking-[0.25em] text-brand-purplev uppercase block mb-3">Essência</span>
+        <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-brand-graphite">Território prioritário</h2>
+        <p class="mt-4 text-brand-graphite/70 text-lg leading-relaxed font-semibold">
+          Cultura viva: o abraço que acolhe a diversidade e a arte que transforma o caminho de cada um.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- MISSÃO -->
+        <div class="reveal-element group bg-white rounded-3xl p-8 border border-black/[0.03] hover:border-brand-purplev/20 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500">
+          <div class="w-12 h-12 rounded-2xl bg-brand-redv/10 flex items-center justify-center text-brand-redv mb-6">M</div>
+          <h3 class="text-lg font-black tracking-wider uppercase mb-3">Missão</h3>
+          <p class="text-brand-graphite/70 text-xs sm:text-sm leading-relaxed">
+            Desenvolver e defender a cultura em suas diversas manifestações, impulsionando a formação artística integrada e a transformação comunitária sustentável.
+          </p>
+        </div>
+
+        <!-- VISÃO -->
+        <div class="reveal-element delay-100 group bg-white rounded-3xl p-8 border border-black/[0.03] hover:border-brand-purplev/20 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500">
+          <div class="w-12 h-12 rounded-2xl bg-brand-tealv/10 flex items-center justify-center text-brand-tealv mb-6">V</div>
+          <h3 class="text-lg font-black tracking-wider uppercase mb-3">Visão</h3>
+          <p class="text-brand-graphite/70 text-xs sm:text-sm leading-relaxed">
+            Ser referência em gestão e impacto sociocultural no Centro-Oeste brasileiro, validando a arte como pilar de desenvolvimento urbano e inclusão social.
+          </p>
+        </div>
+
+        <!-- VALORES -->
+        <div class="reveal-element delay-200 group bg-white rounded-3xl p-8 border border-black/[0.03] hover:border-brand-purplev/20 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500">
+          <div class="w-12 h-12 rounded-2xl bg-brand-purplev/10 flex items-center justify-center text-brand-purplev mb-6">V</div>
+          <h3 class="text-lg font-black tracking-wider uppercase mb-3">Valores</h3>
+          <p class="text-brand-graphite/70 text-xs sm:text-sm leading-relaxed">
+            Cultura viva, inclusão, diversidade, ética, transparência, autonomia, cooperação e responsabilidade social.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO ÁREAS DE ATUAÇÃO (PRESERVADA) -->
+  <section id="areas-atuacao" class="relative py-28 bg-brand-bgLightWarm/40 border-t border-brand-graphite/[0.03]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="max-w-3xl mb-16 reveal-element">
+        <span class="text-xs font-black tracking-[0.25em] text-brand-redv uppercase block mb-3">Atuação</span>
+        <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-brand-graphite">Linhas de atuação e impacto</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="reveal-element bg-white p-6 rounded-3xl border border-black/[0.02]">
+          <h4 class="font-black text-xs uppercase tracking-wider text-brand-redv mb-2">Cultura e arte</h4>
+          <p class="text-xs text-brand-graphite/70">Acesso, pertencimento e fomento à produção artística e regional.</p>
+        </div>
+        <div class="reveal-element delay-100 bg-white p-6 rounded-3xl border border-black/[0.02]">
+          <h4 class="font-black text-xs uppercase tracking-wider text-brand-tealv mb-2">Formação e oficinas</h4>
+          <p class="text-xs text-brand-graphite/70">Formações continuadas e oficinas sistemáticas para a comunidade.</p>
+        </div>
+        <div class="reveal-element delay-200 bg-white p-6 rounded-3xl border border-black/[0.02]">
+          <h4 class="font-black text-xs uppercase tracking-wider text-brand-pinkv mb-2">Eventos e difusão</h4>
+          <p class="text-xs text-brand-graphite/70">Espetáculos de dança, teatro e eventos integradores locais.</p>
+        </div>
+        <div class="reveal-element delay-300 bg-white p-6 rounded-3xl border border-black/[0.02]">
+          <h4 class="font-black text-xs uppercase tracking-wider text-brand-purplev mb-2">Ações socioculturais</h4>
+          <p class="text-xs text-brand-graphite/70">Desenvolvimento humano e social de base comunitária ativa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO PROJETOS (COM LOGOS CORRETAS DOS SEUS FICHEIROS) -->
+  <section id="projetos" class="relative py-28 bg-white border-t border-brand-graphite/[0.03]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6 reveal-element">
+        <div class="max-w-2xl">
+          <span class="text-xs font-black tracking-[0.25em] text-brand-redv uppercase block mb-3">Projetos</span>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-brand-graphite">Iniciativas Culturais e Sociais</h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- PROJETO 1: Canta Bairro Gospel -->
+        <div class="reveal-element group bg-brand-bgLight/40 rounded-[2.5rem] p-8 border border-black/[0.03] hover:border-brand-redv/20 hover:bg-white shadow-sm hover:shadow-md hover:-translate-y-1.5 transition-all duration-500">
+          <div class="relative w-full aspect-video rounded-2xl bg-brand-graphite/5 overflow-hidden mb-6 flex items-center justify-center">
+            <!-- Tenta carregar a logo do seu diretório -->
+            <img 
+              src="canta-bairro-gospel.jpeg.jpeg" 
+              alt="Canta Bairro Gospel" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; document.getElementById('fallback-gospel').classList.remove('hidden')"
+            />
+            <div id="fallback-gospel" class="hidden absolute inset-0 bg-gradient-to-tr from-brand-redv/20 to-transparent flex items-center justify-center">
+              <span class="text-xs font-black text-brand-redv uppercase tracking-widest">Canta Bairro Gospel</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-black tracking-tight mb-3">Canta Bairro Gospel</h3>
+          <p class="text-brand-graphite/70 text-sm leading-relaxed">
+            Festival e fomento à canção e expressão cultural de base comunitária cristã.
+          </p>
+        </div>
+
+        <!-- PROJETO 2: Canta Bairro Sertanejo -->
+        <div class="reveal-element delay-100 group bg-brand-bgLight/40 rounded-[2.5rem] p-8 border border-black/[0.03] hover:border-brand-tealv/20 hover:bg-white shadow-sm hover:shadow-md hover:-translate-y-1.5 transition-all duration-500">
+          <div class="relative w-full aspect-video rounded-2xl bg-brand-graphite/5 overflow-hidden mb-6 flex items-center justify-center">
+            <img 
+              src="canta-bairro-sertanejo.jpeg.jpeg" 
+              alt="Canta Bairro Sertanejo" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; document.getElementById('fallback-sertanejo').classList.remove('hidden')"
+            />
+            <div id="fallback-sertanejo" class="hidden absolute inset-0 bg-gradient-to-tr from-brand-tealv/20 to-transparent flex items-center justify-center">
+              <span class="text-xs font-black text-brand-tealv uppercase tracking-widest">Canta Bairro Sertanejo</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-black tracking-tight mb-3">Canta Bairro Sertanejo</h3>
+          <p class="text-brand-graphite/70 text-sm leading-relaxed">
+            Resgate e valorização das tradições da música sertaneja e raiz da nossa região.
+          </p>
+        </div>
+
+        <!-- PROJETO 3: Dançando a Vida -->
+        <div class="reveal-element delay-200 group bg-brand-bgLight/40 rounded-[2.5rem] p-8 border border-black/[0.03] hover:border-brand-purplev/20 hover:bg-white shadow-sm hover:shadow-md hover:-translate-y-1.5 transition-all duration-500">
+          <div class="relative w-full aspect-video rounded-2xl bg-brand-graphite/5 overflow-hidden mb-6 flex items-center justify-center">
+            <img 
+              src="dancando-a-vida.jpeg.jpeg" 
+              alt="Dançando a Vida" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; document.getElementById('fallback-dancando').classList.remove('hidden')"
+            />
+            <div id="fallback-dancando" class="hidden absolute inset-0 bg-gradient-to-tr from-brand-purplev/20 to-transparent flex items-center justify-center">
+              <span class="text-xs font-black text-brand-purplev uppercase tracking-widest">Dançando a Vida</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-black tracking-tight mb-3">Dançando a Vida</h3>
+          <p class="text-brand-graphite/70 text-sm leading-relaxed">
+            Oficinas sistemáticas de balé, jazz e dança contemporânea para crianças e jovens.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO CONTATO (INTEGRAL) -->
+  <section id="contato" class="relative py-28 bg-brand-bgLight">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+        
+        <div class="lg:col-span-5 flex flex-col justify-between reveal-element">
+          <div>
+            <span class="text-xs font-black tracking-[0.25em] text-brand-redv uppercase block mb-3">Fale conosco</span>
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-brand-graphite">Entre em contato para parcerias e informações.</h2>
+          </div>
+
+          <div class="mt-10 lg:mt-0 space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-white border border-black/5 flex items-center justify-center text-brand-graphite shrink-0">
+                📌
+              </div>
+              <div>
+                <h4 class="text-xs font-black uppercase tracking-wider text-brand-graphite/50">Endereço</h4>
+                <p class="text-sm font-bold text-brand-graphite mt-1">Rua dos Álamos, nº 23, Setor Comercial</p>
+                <p class="text-xs text-brand-graphite/60 font-medium">Sinop/MT, CEP 78.550-188</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-white border border-black/5 flex items-center justify-center text-brand-graphite shrink-0">
+                💬
+              </div>
+              <div>
+                <h4 class="text-xs font-black uppercase tracking-wider text-brand-graphite/50">WhatsApp</h4>
+                <p class="text-sm font-bold text-brand-graphite mt-1">(66) 99656-3806</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-white border border-black/5 flex items-center justify-center text-brand-graphite shrink-0">
+                ✉
+              </div>
+              <div>
+                <h4 class="text-xs font-black uppercase tracking-wider text-brand-graphite/50">E-mail</h4>
+                <p class="text-sm font-bold text-brand-graphite mt-1">administracao@vivacultura.org.br</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 reveal-element delay-200">
+          <div class="bg-white rounded-[2.5rem] p-8 md:p-10 border border-black/[0.03] shadow-sm flex flex-col justify-between h-full">
+            <form onsubmit="handleDemoSubmit(event)" class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[10px] font-black uppercase tracking-wider text-brand-graphite/60">Seu Nome *</label>
+                  <input type="text" required placeholder="Digite seu nome" class="w-full px-4 py-3 rounded-xl border border-brand-graphite/10 focus:outline-none text-xs font-semibold">
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[10px] font-black uppercase tracking-wider text-brand-graphite/60">Seu E-mail *</label>
+                  <input type="email" required placeholder="nome@provedor.com" class="w-full px-4 py-3 rounded-xl border border-brand-graphite/10 focus:outline-none text-xs font-semibold">
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <label class="text-[10px] font-black uppercase tracking-wider text-brand-graphite/60">Mensagem *</label>
+                <textarea required rows="4" placeholder="Escreva detalhadamente..." class="w-full px-4 py-3 rounded-xl border border-brand-graphite/10 focus:outline-none text-xs font-semibold resize-none"></textarea>
+              </div>
+
+              <div id="form-success" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium">
+                Mensagem enviada com sucesso!
+              </div>
+
+              <button type="submit" class="w-full py-4 rounded-xl bg-brand-graphite text-white font-extrabold tracking-widest uppercase text-xs hover:bg-brand-redv hover:-translate-y-0.5 transition-all duration-300">
+                Enviar Mensagem Segura
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ PREMIUM INSTITUCIONAL -->
+  <footer class="bg-brand-graphite text-white/50 py-16 border-t border-white/5 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div class="grid md:grid-cols-12 gap-12 mb-12">
+        
+        <div class="md:col-span-6">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="font-black text-white tracking-widest uppercase text-sm">Instituto Viva Cultura</span>
+          </div>
+          <p class="text-xs leading-relaxed max-w-sm text-white/60">
+            Promoção da cultura, arte, formação, inclusão social e desenvolvimento comunitário por meio de projetos socioculturais, oficinas, eventos e ações de difusão artística.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-3 text-xs">
+          <h4 class="text-[10px] font-black uppercase tracking-wider text-white">Navegação</h4>
+          <a href="#" class="block hover:text-white transition">Início</a>
+          <a href="#quem-somos" class="block hover:text-white transition">Quem somos</a>
+          <a href="#essencia" class="block hover:text-white transition">Essência</a>
+          <a href="#areas-atuacao" class="block hover:text-white transition">Áreas de atuação</a>
+          <a href="#projetos" class="block hover:text-white transition">Projetos</a>
+        </div>
+
+        <div class="md:col-span-3 text-xs space-y-3 font-medium text-white/60">
+          <h4 class="text-[10px] font-black uppercase tracking-wider text-white mb-4">Contato Sede</h4>
+          <p>Rua dos Álamos, nº 23, Setor Comercial, Sinop/MT</p>
+          <p>administracao@vivacultura.org.br</p>
+          <p class="font-bold text-white">(66) 99656-3806</p>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/5 pt-10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px]">
+        <p>© 2026 Instituto Viva Cultura. Todos os direitos reservados.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DE ENGENHARIA DE ROLAGEM -->
+  <script>
+    function triggerIntroAnimation() {
+      const heroOnly = document.querySelectorAll('.hero-section .reveal-element');
+      heroOnly.forEach(el => {
+        el.classList.remove('is-visible');
+        void el.offsetWidth;
+      });
+
+      setTimeout(() => {
+        heroOnly.forEach(el => {
+          el.classList.add('is-visible');
+        });
+      }, 50);
+    }
+
+    function initScrollReveal() {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.12
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+
+      document.querySelectorAll('section:not(.hero-section) .reveal-element').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    function resetAndPlay() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      triggerIntroAnimation();
+    }
+
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function handleDemoSubmit(e) {
+      e.preventDefault();
+      const successBox = document.getElementById('form-success');
+      successBox.classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => { successBox.classList.add('hidden'); }, 5000);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      triggerIntroAnimation();
+      initScrollReveal();
+    });
+  </script>
+</body>
+</html>

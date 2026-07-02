@@ -34,6 +34,8 @@ Historico e pendencias do site institucional do Instituto Viva Cultura.
 - Build local validado com `npm run build` em 2026-07-01 apos atualizar a secao Projetos com logos reais.
 - Refinamento visual profissional aplicado em 2026-07-01, consolidando tokens de superficie, borda, sombra, ritmo de secoes, hierarquia do hero, consistencia dos cards, animacoes e ajustes responsivos sem alterar conteudo institucional.
 - Build local validado com `npm run build` em 2026-07-01 apos o refinamento visual profissional.
+- Assets oficiais de logo do Instituto Viva Cultura e HTML de referencia visual restaurados em 2026-07-02 em `src/assets/brand/` e `_references/` para orientar refinamentos futuros.
+- Header e Hero refinados em 2026-07-02 com logos oficiais e inspiracao controlada em `_references/prot-tipo-fiel-viva-cultura.html`, preservando textos aprovados, cores oficiais, fonte Inter, dados institucionais e demais secoes.
 
 ## Auditoria npm - 2026-06-27
 
