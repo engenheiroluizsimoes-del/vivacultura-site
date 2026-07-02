@@ -138,7 +138,7 @@ export default function App() {
           <div className="brand-ring absolute inset-0"></div>
           <div className="max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28 relative">
             <div className="hero-grid grid lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-16 items-center">
-              <div className="hero-copy order-2 lg:order-1" data-reveal>
+              <div className="hero-copy order-1 lg:order-1" data-reveal>
                 <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/60 text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-graphite)]/75">
                   Instituto Viva Cultura
                 </div>
@@ -185,7 +185,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="hero-visual relative order-1 lg:order-2" data-reveal>
+              <div className="hero-visual relative order-2 lg:order-2" data-reveal>
                 <div className="logo-panel rounded-[2rem] bg-white shadow-soft border border-black/5 p-8 lg:p-10 flex items-center justify-center">
                   <img src={squareLogo} alt="Marca do Instituto Viva Cultura" className="w-48 h-48 md:w-full md:max-w-md object-contain drop-shadow-2xl" />
                 </div>
