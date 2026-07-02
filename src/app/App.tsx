@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, X } from 'lucide-react';
-import squareLogo from '../assets/0f91f03b39f7cbb5b458f36bab100422e8d6a94b.png';
+import squareLogo from '../assets/brand/logo-completa-padrao.png';
 import wideLogo from '../assets/c8a1c09d0148895d62a21222e31c4f1947cf7561.png';
 import cantaBairroGospelLogo from '../assets/projetos/logos/canta-bairro-gospel.jpeg.jpeg';
 import cantaBairroSertanejoLogo from '../assets/projetos/logos/canta-bairro-sertanejo.jpeg.jpeg';
@@ -96,10 +96,9 @@ export default function App() {
     <div className="antialiased font-body">
       <header className={`site-header sticky top-0 z-50 backdrop-blur-md bg-[var(--color-cream)]/90 border-b border-black/5 ${headerScrolled ? 'site-header--scrolled' : ''}`}>
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
-          <div className="flex items-center justify-between py-4 gap-6">
-            <a href="#inicio" className="flex items-center gap-3 min-w-0">
+          <div className="header-shell flex items-center justify-between gap-5">
+            <a href="#inicio" className="brand-link flex items-center min-w-0" aria-label="Instituto Viva Cultura - inicio">
               <img src={squareLogo} alt="Símbolo do Instituto Viva Cultura" className="h-10 w-auto" />
-              <span className="text-xl font-black tracking-tight text-[var(--color-graphite)] hidden sm:block">Viva Cultura</span>
             </a>
 
             <nav className="hidden md:flex items-center gap-8 text-sm font-bold text-[var(--color-graphite)]/80">
@@ -138,7 +137,7 @@ export default function App() {
         <section className="hero-section relative overflow-hidden pt-10 lg:pt-0">
           <div className="brand-ring absolute inset-0"></div>
           <div className="max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28 relative">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div className="hero-grid grid lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-16 items-center">
               <div className="hero-copy order-2 lg:order-1" data-reveal>
                 <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/60 text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-graphite)]/75">
                   Instituto Viva Cultura
@@ -170,7 +169,7 @@ export default function App() {
                   </a>
                 </div>
 
-                <div className="reveal-grid mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl">
+                <div className="hero-metrics reveal-grid mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl">
                   <div className="metric-card glass-card rounded-2xl p-4 border border-black/5 shadow-soft">
                     <div className="text-2xl font-black text-[var(--color-redv)]">Cultura</div>
                     <div className="mt-1 text-sm text-[var(--color-graphite)]/70">Acesso, pertencimento e participação cultural</div>
@@ -186,7 +185,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="relative order-1 lg:order-2" data-reveal>
+              <div className="hero-visual relative order-1 lg:order-2" data-reveal>
                 <div className="logo-panel rounded-[2rem] bg-white shadow-soft border border-black/5 p-8 lg:p-10 flex items-center justify-center">
                   <img src={squareLogo} alt="Marca do Instituto Viva Cultura" className="w-48 h-48 md:w-full md:max-w-md object-contain drop-shadow-2xl" />
                 </div>
