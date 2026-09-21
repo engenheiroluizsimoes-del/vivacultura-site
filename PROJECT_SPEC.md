@@ -225,9 +225,9 @@ WhatsApp: `(66) 99656-3806`
 
 Link WhatsApp: `https://wa.me/5566996563806`
 
-Instagram: `@ivivacultura`
+Instagram: `@vivaculturamt`
 
-Instagram URL: `https://www.instagram.com/ivivacultura/`
+Instagram URL: `https://www.instagram.com/vivaculturamt/`
 
 E-mail: `administracao@vivacultura.org.br`
 

@@ -19,6 +19,6 @@ export const instituto = {
     'O Instituto Viva Cultura atua na promoção da cultura, da arte, da formação e da inclusão social, desenvolvendo projetos socioculturais, oficinas, eventos, ações de difusão artística, capacitação, preservação cultural e fortalecimento comunitário.',
   rodapeTexto:
     'Promoção da cultura, arte, formação, inclusão social e desenvolvimento comunitário por meio de projetos socioculturais, oficinas, eventos e ações de difusão artística.',
-  instagram: '@ivivacultura',
-  instagramUrl: 'https://www.instagram.com/ivivacultura/',
+  instagram: '@vivaculturamt',
+  instagramUrl: 'https://www.instagram.com/vivaculturamt/',
 } as const;
