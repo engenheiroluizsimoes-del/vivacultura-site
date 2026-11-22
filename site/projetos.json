@@ -1,0 +1,35 @@
+[
+  {
+    "id": "canta-bairro-gospel",
+    "nome": "Canta Bairro Gospel",
+    "resumo": "Leva música e encontros comunitários aos bairros.",
+    "categoria": "Música e comunidade",
+    "descricao": "Projeto sociocultural que leva música, encontro comunitário e expressão artística aos bairros, fortalecendo vínculos e ampliando o acesso à cultura.",
+    "arte": true
+  },
+  {
+    "id": "canta-bairro-sertanejo",
+    "nome": "Canta Bairro Sertanejo",
+    "resumo": "Valoriza a música sertaneja e reúne a comunidade em espaços públicos.",
+    "categoria": "Cultura sertaneja",
+    "descricao": "Ação cultural voltada à valorização da música sertaneja, da convivência comunitária e da ocupação artística dos espaços públicos.",
+    "arte": true
+  },
+  {
+    "id": "dancando-a-vida",
+    "nome": "Dançando a Vida",
+    "resumo": "Propõe levar balé clássico, jazz e dança contemporânea aos espaços públicos de Sinop.",
+    "categoria": "Dança e formação",
+    "descricao": "A proposta é levar balé clássico, jazz e dança contemporânea aos espaços públicos de Sinop, para que mais pessoas possam vivenciar a dança no dia a dia.",
+    "situacao": "Proposta documentada · execução a confirmar",
+    "arte": true
+  },
+  {
+    "id": "grande-parada-encantada",
+    "nome": "Grande Parada Encantada",
+    "resumo": "Propõe uma celebração que aproxima arte, imaginação e convivência comunitária.",
+    "categoria": "Cultura e encontro",
+    "descricao": "A proposta é reunir a comunidade em uma celebração coletiva e criar um espaço de encontro pela cultura.",
+    "situacao": "Aprovação e captação citadas no mídia kit · situação atual a confirmar"
+  }
+]

@@ -90,3 +90,7 @@ Toda alteracao visual ou textual deve preservar o manual atualizado de imagem e 
 Mudancas em dominio, DNS, Cloudflare Pages ou dados institucionais exigem tarefa explicita.
 
 Arquivos gerados, caches, credenciais e arquivos sensiveis nao devem ser versionados.
+
+## 22/11/2026 — Cópia do design aprovado para produção
+
+Exportação da versão 16 do site de revisão para `site/`. Build estático sem dependências adicionais, preservando a aplicação React e o planejamento do novo portal. Rótulos de prévia, indexação e privacidade ajustados para publicação. Domínio e DNS preservados. Origem: `appgprj_6b03328529e88191b4b77c60807c5fff`, commit `54eee36` (Sites).
